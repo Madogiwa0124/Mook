@@ -1,24 +1,12 @@
-# README
+# Web漫画リーダー"Mook"
+このリポジトリは、開発中のWeb漫画リーダー"Mook"のリポジトリです。  
+Mookを使えば、各サイトに散らばったWeb漫画を一括管理出来ます。  
+※作業の状況は`issues`でご確認ください。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Mookで出来ること(予定)
+* 週間連載のWeb漫画の更新通知
+* 不定期更新のWeb漫画の更新通知
+* お気に入り機能
+* 漫画へのコメント投稿機能
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+完走出来るように頑張る(｀・ω・´)
