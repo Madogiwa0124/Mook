@@ -1,0 +1,16 @@
+<%= form_for @page do |f| %>
+  <% if page.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% page.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>ページ名</p>
+  <%= f.text_field :name %>
+  <p>ページURL</p>
+  <%= f.text_field :url %>
+  <p><%= f.submit %><p>
+<% end %>
