@@ -1,0 +1,37 @@
+$bg-color: #FCFCFC;
+$boder-color: #FAFAFA;
+$content-bg-color: #FFFFFF;
+
+body{
+  background-color: $bg-color;
+}
+
+#index{
+  .page{
+    background-color: $content-bg-color;
+    .title{
+      font-size: 20px;
+    }
+    .url{
+      font-size: 15px;
+    }
+    .btn-area{
+      padding-top: 5px; 
+      text-align: right;
+      border-top: 1px solid $boder-color;
+    }
+    border: 1px solid $boder-color;
+    border-radius: 5px;
+    padding: 10px;
+  }
+}
+
+#show{
+  .detail-area{
+    padding: 10px;
+    background-color: $content-bg-color;
+  }
+  .url{
+    font-size: 15px;
+  }
+}

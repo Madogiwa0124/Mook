@@ -1,4 +1,10 @@
-<h1><%= @page.name %></h1>
-<p>URL：<%= @page.url %></p>
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
+<div id="show" class="container">
+  <h1><%= @page.name %></h1>
+  <div class="detail-area">
+    <p class="url">URL：<%= link_to @page.url, @page.url %></p>
+    <div class="btn-area">
+      <%= link_to 'Edit', edit_page_path(@page), class: "btn btn-primary" %>
+      <%= link_to 'Back', pages_path, class: "btn btn-warning" %>
+    </div>
+  </div>
+</div>
