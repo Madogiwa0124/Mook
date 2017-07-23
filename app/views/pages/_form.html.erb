@@ -8,9 +8,14 @@
       </ul>
     </div>
   <% end %>
-  <p>ページ名</p>
-  <%= f.text_field :name %>
-  <p>ページURL</p>
-  <%= f.text_field :url %>
-  <p><%= f.submit %><p>
+  <div class="form-group">
+    <label for="name">ページ名</label>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <label for="url">URL</label>
+    <%= f.text_field :url, class: "form-control" %>
+  </div>
+  <%= f.submit "登録", class: "btn btn-primary" %>
+  <%= link_to '戻る', pages_path, class: "btn btn-warning" %>
 <% end %>

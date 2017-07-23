@@ -1,13 +1,16 @@
-<h1>Pages</h1>
+<div id="index" class="container">
+<h1>ページ一覧</h1>
 <p id="notice"><%= notice %></p>
-<% @pages.each do |page| %>
-  <p>名前：<%= page.name %></p>
-  <p>URL：<%= page.url %></p>
-  <p>
-    <%= link_to 'Show', page %></td>
-    <%= link_to 'Edit', edit_page_path(page) %></td>
-    <%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </p>
-<% end %>
-
 <%= link_to 'New Page', new_page_path %>
+<% @pages.each do |page| %>
+  <div class="page">
+    <p class="title"><%= page.name %></p>
+    <p class="url"><%= link_to page.url, page.url %></p>
+    <div class="btn-area">
+      <%= link_to 'Show', page, class: "btn btn-info btn-sm" %></td>
+      <%= link_to 'Edit', edit_page_path(page), class: "btn btn-warning btn-sm" %></td>
+      <%= link_to 'Destroy', page, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } %></td>
+    </div>
+  </div>
+<% end %>
+</div>
