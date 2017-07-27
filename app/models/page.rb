@@ -3,7 +3,7 @@ class Page < ApplicationRecord
   validates :url, presence: true
   validates :html, presence: true
 
-  def set_html
+  def get_html(url)
     charset = nil
     begin
       # HTMLの取得
@@ -11,10 +11,16 @@ class Page < ApplicationRecord
         charset = f.charset
         f.read
       end
-      self.html = html
+      return html
     rescue => e
       puts "HTML取得時に例外が発生しました。"
       puts e.message
     end
   end
+
+  def is_html_change
+    new_html = get_html(self.url)
+    return self.html != new_html
+  end
+
 end

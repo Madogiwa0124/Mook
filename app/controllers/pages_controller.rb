@@ -17,7 +17,7 @@ class PagesController < ApplicationController
 
   def create
     @page = Page.new(page_params)
-    @page.set_html
+    @page.html = get_html(@page.url)
     if @page.save
       redirect_to @page, notice: 'Page was successfully created.'
     else

@@ -5,7 +5,7 @@ class PageTest < ActiveSupport::TestCase
     page = Page.new
     page.name = "hoge"
     page.url = "https://www.google.co.jp/"
-    page.set_html
+    page.html = page.get_html(page.url)
     assert page.save
   end
 
@@ -25,8 +25,17 @@ class PageTest < ActiveSupport::TestCase
     page = Page.new
     page.name = "hoge"
     page.url  = "https://hogehogehogehogehoegoheoge"
-    page.set_html
+    page.html = page.get_html(page.url)
     assert_not page.save
   end
 
+  test "pageのHTMLに変更が返って来たときに変更を検知出来ること" do 
+    page = Page.new
+    page.name = "hoge"
+    page.url  = "https://google.com"
+    page.html = page.get_html(page.url)
+    page.save
+    page.url = "https://www.yahoo.co.jp/"
+    assert page.is_html_change
+  end
 end
