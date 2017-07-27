@@ -20,4 +20,13 @@ class PageTest < ActiveSupport::TestCase
     page.name = "hoge"
     assert_not page.save
   end
+
+  test "HTMLが取得できなかった場合にエラーとなること" do
+    page = Page.new
+    page.name = "hoge"
+    page.url  = "https://hogehogehogehogehoegoheoge"
+    page.set_html
+    assert_not page.save
+  end
+
 end
