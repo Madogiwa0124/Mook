@@ -6,10 +6,15 @@ class Page < ApplicationRecord
   def set_html
     # HTMLの取得
     charset = nil
-    html = open(self.url) do |f|
-      charset = f.charset
-      f.read
+    begin
+      html = open(self.url) do |f|
+        charset = f.charset
+        f.read
+      end
+      self.html = html
+    rescue => e
+      puts "HTML取得時に例外が発生しました。"
+      puts e.message
     end
-    self.html = html
   end
 end
