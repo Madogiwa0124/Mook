@@ -23,4 +23,15 @@ class Page < ApplicationRecord
     return self.html != new_html
   end
 
+  # 登録されたページのHTMLに変更があったら更新する。
+  def self.exec_html_change_batch
+    Page.all.each do |page|
+      new_html = page.get_html(page.url)
+      unless page.html == new_html
+        page.html = new_html
+        page.save
+      end
+    end
+  end
+
 end
