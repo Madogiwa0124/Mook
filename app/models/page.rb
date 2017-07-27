@@ -4,9 +4,9 @@ class Page < ApplicationRecord
   validates :html, presence: true
 
   def set_html
-    # HTMLの取得
     charset = nil
     begin
+      # HTMLの取得
       html = open(self.url) do |f|
         charset = f.charset
         f.read
