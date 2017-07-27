@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pages = Page.all
+    @pages = Page.all.order("updated_at DESC")
   end
 
   def show
