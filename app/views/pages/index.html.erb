@@ -1,11 +1,13 @@
 <div id="index" class="container">
 <h1>ページ一覧</h1>
 <p id="notice"><%= notice %></p>
-<%= link_to 'New Page', new_page_path %>
+<p><%= link_to 'New Page', new_page_path %></p>
 <% @pages.each do |page| %>
-  <div class="page">
-    <p class="title"><%= page.name %></p>
-    <p class="url"><%= link_to page.url, page.url %></p>
+  <div class="page col-sm-3">
+    <div class="contents-area">
+      <p class="title"><%= page.name %></p>
+      <p class="url"><%= link_to page.url, page.url %></p>
+    </div>
     <div class="btn-area">
       <%= link_to 'Show', page, class: "btn btn-info btn-sm" %></td>
       <%= link_to 'Edit', edit_page_path(page), class: "btn btn-warning btn-sm" %></td>
