@@ -12,5 +12,10 @@ module Mook
     # タイムゾーンを日本時間に変更
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
+    # 不要なファイルは生成しないように変更
+    config.generators do |g|
+      g.assets      false # scss,js
+      g.helper      false # XX_helper.rb
+    end
   end
 end
