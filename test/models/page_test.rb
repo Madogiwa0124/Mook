@@ -21,6 +21,21 @@ class PageTest < ActiveSupport::TestCase
     assert_not page.save
   end
 
+  test "登録時にURLが重複している場合はエラーとなること" do
+    # 1件目
+    page = Page.new
+    page.name = "hoge"
+    page.url = "https://www.google.co.jp/"
+    page.html = page.get_html(page.url)
+    page.save
+    # 2件目
+    page = Page.new
+    page.name = "hoge"
+    page.url = "https://www.google.co.jp/"
+    page.html = page.get_html(page.url)
+    assert_not page.save
+  end
+
   test "HTMLが取得できなかった場合にエラーとなること" do
     page = Page.new
     page.name = "hoge"
