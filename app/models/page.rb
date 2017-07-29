@@ -1,6 +1,6 @@
 class Page < ApplicationRecord
   validates :name, presence: true
-  validates :url, presence: true
+  validates :url, presence: true, uniqueness: true
   validates :html, presence: true
 
   def get_html(url)
