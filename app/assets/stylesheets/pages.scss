@@ -2,6 +2,14 @@ $bg-color: #FCFCFC;
 $boder-color: #FAFAFA;
 $content-bg-color: #FFFFFF;
 
+.right{
+  text-align: right;
+}
+
+.left{
+  text-align: left;
+}
+
 body{
   background-color: $bg-color;
 }
@@ -12,7 +20,7 @@ body{
     word-wrap: break-word;
     height: 200px;
     .contents-area{
-      height: 140px;
+      height: 100px;
       .title{
         font-size: 20px;
       }
@@ -22,7 +30,6 @@ body{
     }
     .btn-area{
       padding-top: 10px; 
-      text-align: right;
       border-top: 1px solid $boder-color;
     }
     border: 1px solid $boder-color;
