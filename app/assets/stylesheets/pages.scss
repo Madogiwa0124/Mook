@@ -1,6 +1,7 @@
 $bg-color: #FCFCFC;
 $boder-color: #FAFAFA;
 $content-bg-color: #FFFFFF;
+$title-bg-color: #5EFF99;
 
 .right{
   text-align: right;
@@ -10,12 +11,63 @@ $content-bg-color: #FFFFFF;
   text-align: left;
 }
 
+.search-form{
+  width:300px;
+}
+
+header{
+  h1{
+    margin: 0px;
+    padding: 10px;
+    background-color: $title-bg-color;
+    color: #FFFFFF;
+  }
+}
+
+footer{ 
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  p{
+    text-align: center;
+    margin: 0px;
+    padding: 10px;
+    background-color: $title-bg-color;
+    color: #FFFFFF;
+  }
+}
+
+
 body{
   background-color: $bg-color;
+  padding-bottom: 100px;
 }
 .area{
   padding: 5px;
 }
+
+#new,#edit{
+  h1{
+    border-left: 5px lightgreen solid;
+    padding-left: 10px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+  }
+  .input-form{
+    padding: 20px;
+    border-radius: 10px;
+    background-color: $content-bg-color;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 80%;
+    height: 45%;
+  }
+}
+
 #index{
   .page{
     background-color: $content-bg-color;
