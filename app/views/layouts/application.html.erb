@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mook</title>
+    <title>Moook</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    <header>
+      <h1>Moook</h1>
+    </header>
     <%= yield %>
+    <footer>
+      <p>Copyright © 2017 @Madogiwa_Boy All Rights Reserved.</p>
+    </footer>
   </body>
 </html>
