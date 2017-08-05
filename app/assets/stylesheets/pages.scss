@@ -10,11 +10,12 @@ $title-bg-color: #5EFF99;
 .left{
   text-align: left;
 }
-
-.search-form{
-  width:300px;
+ul{
+  padding: 0px;
 }
-
+li{
+  list-style: none;
+}
 header{
   h1{
     margin: 0px;

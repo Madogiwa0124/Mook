@@ -1,7 +1,9 @@
 <div id="index" class="container">
 <p id="notice"><%= notice %></p>
 <p class="right">
-  <%= link_to 'New Page', new_page_path, class: "btn btn-success"%>
+  <%= link_to new_page_path, class: "btn btn-success" do %>
+    <%= glyph("pushpin") %> 新規投稿
+  <% end %>
 </p>
 <% @pages.each do |page| %>
   <div class="col-sm-3 area">
