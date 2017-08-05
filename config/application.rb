@@ -17,5 +17,7 @@ module Mook
       g.assets      false # scss,js
       g.helper      false # XX_helper.rb
     end
+    # メッセージ形式を変更
+    config.action_view.field_error_proc = proc { |html_tag, instance| html_tag }
   end
 end

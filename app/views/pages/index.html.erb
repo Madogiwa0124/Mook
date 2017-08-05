@@ -1,5 +1,7 @@
 <div id="index" class="container">
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div id="notice" class="alert alert-info" role="alert"><%= notice %></div>
+<% end %>
 <p class="right">
   <%= link_to new_page_path, class: "btn btn-success" do %>
     <%= glyph("pushpin") %> 新規投稿
@@ -20,7 +22,7 @@
         <%= link_to edit_page_path(page), class: "btn btn-warning btn-sm" do %>
           <%= glyph("edit") %>
         <% end %>
-        <%= link_to page, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } do %>
+        <%= link_to page, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "#{page.name}を削除してよろしいですか？" } do %>
           <%= glyph("trash") %>
         <% end %>
       </div>
