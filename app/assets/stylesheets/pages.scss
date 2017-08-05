@@ -1,7 +1,12 @@
 $bg-color: #FCFCFC;
 $boder-color: #FAFAFA;
 $content-bg-color: #FFFFFF;
-$title-bg-color: #5EFF99;
+$title-bg-color: #a2e098;
+$title-hilight-color: #d9f4d4;
+
+body{
+  background-color: $bg-color;
+}
 
 .right{
   text-align: right;
@@ -10,6 +15,11 @@ $title-bg-color: #5EFF99;
 .left{
   text-align: left;
 }
+
+.center{
+  text-align: center;
+}
+
 ul{
   padding: 0px;
 }
@@ -38,11 +48,6 @@ footer{
   }
 }
 
-
-body{
-  background-color: $bg-color;
-  padding-bottom: 100px;
-}
 .area{
   padding: 5px;
 }
@@ -64,9 +69,6 @@ body{
         font-size: 20px;
         height: 200px;
         word-wrap: break-word;
-      }
-      .btn-area{
-        
       }
     }
     padding: 20px;
@@ -112,8 +114,8 @@ body{
 }
 
 /* nvbar */
-$bgDefault      : #5eff99;
-$bgHighlight    : #0ee727;
+$bgDefault      : $title-bg-color;
+$bgHighlight    : $title-hilight-color;
 $colDefault     : #ffffff;
 $colHighlight   : #ffffff;
 $dropDown       : false;

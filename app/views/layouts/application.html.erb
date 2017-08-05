@@ -48,6 +48,9 @@
         </div>
       </nav>
     </header>
+    <% if notice %>
+      <div id="notice" class="alert alert-info" role="alert"><%= notice %></div>
+    <% end %>
     <%= yield %>
     <footer>
       <p>Copyright © 2017 @Madogiwa_Boy All Rights Reserved.</p>
