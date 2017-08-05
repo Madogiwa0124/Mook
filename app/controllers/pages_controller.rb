@@ -19,7 +19,7 @@ class PagesController < ApplicationController
     @page = Page.new(page_params)
     @page.html = @page.get_html(@page.url)
     if @page.save
-      redirect_to @page, notice: 'Page was successfully created.'
+      redirect_to @page, notice: '新しいページを登録しました。'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class PagesController < ApplicationController
 
   def update
     if @page.update(page_params)
-      redirect_to @page, notice: 'Page was successfully updated.' 
+      redirect_to @page, notice: 'ページの情報を更新しました。' 
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class PagesController < ApplicationController
 
   def destroy
     @page.destroy
-    redirect_to pages_url, notice: 'Page was successfully destroyed.'
+    redirect_to pages_url, notice: 'ページを削除しました。'
   end
 
   private

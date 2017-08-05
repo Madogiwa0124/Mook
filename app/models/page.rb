@@ -11,6 +11,8 @@ class Page < ApplicationRecord
         charset = f.charset
         f.read
       end
+      # HTMLをUTF-8に変更
+      html = Nokogiri::HTML.parse(html, nil, charset);
       return html
     rescue => e
       puts "HTML取得時に例外が発生しました。"
