@@ -21,7 +21,6 @@
             <%= glyph("book") %> Moook
           <% end %>
         </div>
-        <% if user_signed_in? %>
           <div id="gnavi" class="collapse navbar-collapse">
             <form class="navbar-form navbar-left" action="/pages">
               <div class="input-group">
@@ -34,6 +33,7 @@
               </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
               <li>
                 <%= link_to root_path do %>
                   <%= glyph("home") %> ホーム
@@ -45,13 +45,24 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                  <%= glyph("log-out") %> ログアウト
+                <%= link_to new_user_session_path, method: :delete do %>
+                  <%= glyph("log-out") %> ログイン
                 <% end %>
               </li>
+            <% else %>
+                <li>
+                  <%= link_to new_user_session_path do %>
+                    <%= glyph("log-in") %> ログイン
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to new_user_registration_path do %>
+                    <%= glyph("user") %> サインイン
+                  <% end %>
+                </li>
+              <% end %>
             </ul>
           </div>
-        <% end %>
       </nav>
     </header>
     <% if notice %>
