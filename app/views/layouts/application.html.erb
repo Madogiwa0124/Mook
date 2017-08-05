@@ -22,30 +22,37 @@
             <%= glyph("book") %> Moook
           <% end %>
         </div>
-        <div id="gnavi" class="collapse navbar-collapse">
-          <form class="navbar-form navbar-left" action="/pages">
-            <div class="input-group">
-              <div class="form-group">
-                <input type="text" name="search_text" class="form-control search-form" placeholder="ページを探す" >
+        <% if user_signed_in? %>
+          <div id="gnavi" class="collapse navbar-collapse">
+            <form class="navbar-form navbar-left" action="/pages">
+              <div class="input-group">
+                <div class="form-group">
+                  <input type="text" name="search_text" class="form-control search-form" placeholder="ページを探す" >
+                </div>
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-default"><%= glyph("search") %></button>
+                </span>
               </div>
-              <span class="input-group-btn">
-                <button type="submit" class="btn btn-default"><%= glyph("search") %></button>
-              </span>
-            </div>
-          </form>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <%= link_to root_path do %>
-                <%= glyph("home") %> ホーム
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_page_path do %>
-                <%= glyph("pushpin") %> 新規投稿
-              <% end %>
-            </li>
-          </ul>
-        </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <%= link_to root_path do %>
+                  <%= glyph("home") %> ホーム
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_page_path do %>
+                  <%= glyph("pushpin") %> 新規投稿
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <%= glyph("log-out") %> ログアウト
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
       </nav>
     </header>
     <% if notice %>
