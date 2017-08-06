@@ -4,6 +4,7 @@ class Page < ApplicationRecord
   validates :html, presence: true
 
   def self.search(key)
+    # 検索値に合致したページの一覧を降順で返却
     Page.where("name like '%#{ key }%'").order("updated_at DESC")
   end
 
