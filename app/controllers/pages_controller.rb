@@ -6,6 +6,11 @@ class PagesController < ApplicationController
     @pages = Page.all.order("updated_at DESC")
   end
 
+  def search
+    @pages = Page.search(params[:search_text])
+    render 'index'
+  end
+
   def show
   end
 
