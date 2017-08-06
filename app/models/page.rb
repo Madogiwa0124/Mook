@@ -4,7 +4,7 @@ class Page < ApplicationRecord
   validates :html, presence: true
 
   def self.search(key)
-    Page.where("name like '%#{ key }%'")
+    Page.where("name like '%#{ key }%'").order("updated_at DESC")
   end
 
   def get_html(url)
