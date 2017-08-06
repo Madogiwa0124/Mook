@@ -7,22 +7,20 @@ class Page < ApplicationRecord
     charset = nil
     begin
       # HTMLの取得
-      html = open(self.url) do |f|
-        charset = f.charset
-        f.read
-      end
-      # HTMLをUTF-8に変更
-      html = Nokogiri::HTML.parse(html, nil, charset);
-      return html
+      html = open(url).read
+      # HTMLの整形
+      html = html.sub(/^<!DOCTYPE html(.*)$/, '<!DOCTYPE html>')
+      html = html.sub(/\r\n|\r|\n/, "")
+      html = Nokogiri::HTML.parse(html, url);
+      # HTMLからstyle、scriptタグを削除
+      rm_tag = ["script", "style", "image", "code"]
+      html.css('body').search(rm_tag.join(',')).remove
+      # utf-8にエンコードして返却
+      return html.to_s.encode('UTF-8')
     rescue => e
       puts "HTML取得時に例外が発生しました。"
       puts e.message
     end
-  end
-
-  def is_html_change
-    new_html = get_html(self.url)
-    return self.html != new_html
   end
 
   # 登録されたページのHTMLに変更があったら更新する。
