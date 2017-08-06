@@ -3,6 +3,10 @@ class Page < ApplicationRecord
   validates :url, presence: true, uniqueness: true
   validates :html, presence: true
 
+  def self.search(key)
+    Page.where("name like '%#{ key }%'")
+  end
+
   def get_html(url)
     charset = nil
     begin
