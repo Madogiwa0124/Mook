@@ -51,6 +51,18 @@ class PageTest < ActiveSupport::TestCase
     page.html = page.get_html(page.url)
     page.save
     page.url = "https://www.yahoo.co.jp/"
-    assert page.is_html_change
+    page.html = page.get_html(page.url)
+    assert_not page.html == Page.find(page.id).html
+  end
+
+  test "検索条件に合致したページのみが返却されること" do
+    3.times do |i|
+      page = Page.new
+      page.name = "name#{i.to_s}"
+      page.url  = "hogehoge"
+      page.html = "hogehoge"
+      page.save
+    end
+    assert Page.search("0").count == 1
   end
 end
