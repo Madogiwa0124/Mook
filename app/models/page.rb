@@ -5,7 +5,10 @@ class Page < ApplicationRecord
 
   def self.search(key)
     # 検索値に合致したページの一覧を降順で返却
-    Page.where("name like '%#{ key }%'").order("updated_at DESC")
+    result1 = Page.where("name like '%#{ key }%'")
+    result2 = Page.where("url like '%#{ key }%'")
+    final_result = result1 + result2
+    final_result.uniq.sort_by{ |val| val['updated_at'] }
   end
 
   def get_html(url)
