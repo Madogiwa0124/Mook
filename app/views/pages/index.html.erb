@@ -13,7 +13,7 @@
       </div>
       <p class="tags_area">
         <% page.tag_list[0..2].each do |tag| %>
-          <span class="label label-success xs tag"><%= tag %></span>
+          <span class="label label-primary xs tag"><%= tag %></span>
         <% end %>
       </p>
       <p class="update_time right">更新日時：<%= format_date(page.updated_at) %></p>

@@ -5,12 +5,12 @@
       <p class="url">URL：<%= link_to @page.url, @page.url %></p>
       <p class="tags_area">
         <% @page.tag_list.each do |tag| %>
-          <span class="label label-success xs tag"><%= tag %></span>
+          <span class="label label-primary xs tag"><%= tag %></span>
         <% end %>
       </p>
       <div class="btn-area">
-        <%= link_to 'Edit', edit_page_path(@page), class: "btn btn-primary" %>
-        <%= link_to 'Back', pages_path, class: "btn btn-warning" %>
+        <%= link_to '編集', edit_page_path(@page), class: "btn btn-info" %>
+        <%= link_to '戻る', pages_path, class: "btn btn-warning" %>
       </div>
     </div>
   </div>
