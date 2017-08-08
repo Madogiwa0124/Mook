@@ -11,7 +11,7 @@ class Page < ApplicationRecord
                           " OR "+ 
                           "url like '%#{ key }%'")
     result2 = Page.tagged_with(key)
-    (result1 + result2).uniq.sort_by{ |val| val['updated_at'] }
+    (result1 + result2).uniq.sort_by{ |v| v['updated_at'] }
   end
 
   def get_html(url)
