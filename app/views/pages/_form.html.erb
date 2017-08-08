@@ -9,10 +9,12 @@
     </div>
   <% end %>
   <div class="form-group">
-    <label for="name">ページ名</label>
+    <%= f.label :name, "ページ名" %>
     <%= f.text_field :name, class: "form-control" %>
-    <label for="url">URL</label>
+    <%= f.label :url, "URL" %>
     <%= f.text_field :url, class: "form-control" %>
+    <%= f.label :tag_list, "タグ(カンマ区切り)" %><br>
+    <%= text_field_tag 'page[tag_list]', @page.tag_list.join(','), class: "form-control" %>
     <br>
     <%= f.submit "登録", class: "btn btn-primary" %>
     <%= link_to '戻る', pages_path, class: "btn btn-warning" %>

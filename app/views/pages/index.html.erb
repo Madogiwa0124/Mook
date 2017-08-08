@@ -5,12 +5,17 @@
   <% end %>
 </p>
 <% @pages.each do |page| %>
-  <div class="col-sm-3 area">
+  <div class="col-sm-4 area">
     <div class="page">
       <div class="contents-area">
         <p class="title"><%= page.name %></p>
         <p class="url"><%= link_to page.url, page.url %></p>
       </div>
+      <p class="tags_area">
+        <% page.tag_list[0..2].each do |tag| %>
+          <span class="label label-success xs tag"><%= tag %></span>
+        <% end %>
+      </p>
       <p class="update_time right">更新日時：<%= format_date(page.updated_at) %></p>
       <div class="btn-area right">
         <%= link_to page, class: "btn btn-info btn-sm" do %>

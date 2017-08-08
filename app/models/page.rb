@@ -2,14 +2,16 @@ class Page < ApplicationRecord
   validates :name, presence: true
   validates :url, presence: true, uniqueness: true
   validates :html, presence: true
+  acts_as_taggable
 
   def self.search(key)
     # 検索値に合致したページの一覧を降順で返却
-    result = Page.where(
+    result1 = Page.where(
                           "name like '%#{ key }%'" + 
                           " OR "+ 
                           "url like '%#{ key }%'")
-    result.uniq.sort_by{ |val| val['updated_at'] }
+    result2 = Page.tagged_with(key)
+    (result1 + result2).uniq.sort_by{ |val| val['updated_at'] }
   end
 
   def get_html(url)
