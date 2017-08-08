@@ -3,9 +3,11 @@
     <h1><%= @page.name %></h1>
     <div class="content-area">
       <p class="url">URL：<%= link_to @page.url, @page.url %></p>
-      <textarea class="form-control" style="height:200px">
-        <%= @page.html %>
-      </textarea>
+      <p class="tags_area">
+        <% @page.tag_list.each do |tag| %>
+          <span class="label label-success xs tag"><%= tag %></span>
+        <% end %>
+      </p>
       <div class="btn-area">
         <%= link_to 'Edit', edit_page_path(@page), class: "btn btn-primary" %>
         <%= link_to 'Back', pages_path, class: "btn btn-warning" %>
