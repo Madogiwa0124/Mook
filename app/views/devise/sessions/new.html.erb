@@ -1,0 +1,33 @@
+<div class="container center bg">
+  <div class="catchcopy">
+    <h1>いつもの更新、いつでも確認</h1>
+  </div>
+  <div class="logo_area">
+    <span class="logo"><%= glyph("book") %></span>
+  </div>
+  <div class="login-form">
+  <h1>ログイン</h1>
+  <div class="form-group left">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <label>メールアドレス</label>
+      <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      <br>
+      <label>パスワード</label>
+      <%= f.password_field :password, autocomplete: "off",  class: "form-control" %>
+      <% if devise_mapping.rememberable? %>
+        <br>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me, class: "checkbox-inline" %>
+        </div>
+      <% end -%>
+      <br>
+      <div class="actions center">
+        <%= f.submit "ログイン", class:"btn btn-primary" %>
+      </div>
+    <% end %>
+    <br>
+    <%= render "devise/shared/links" %>
+  </div>
+  </div>
+</div>
