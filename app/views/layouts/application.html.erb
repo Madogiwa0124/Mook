@@ -1,14 +1,76 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mook</title>
+    <title>Moook</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <nav class="navbar navbar-default">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
+            <span class="sr-only">メニュー</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to root_path, class: "navbar-brand title" do %>
+            <%= glyph("book") %> Moook
+          <% end %>
+        </div>
+          <div id="gnavi" class="collapse navbar-collapse">
+            <form class="navbar-form navbar-left" action="/pages/search">
+              <div class="input-group">
+                <div class="form-group">
+                  <input type="text" name="search_text" class="form-control search-form" placeholder="ページを探す" >
+                </div>
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-default"><%= glyph("search") %></button>
+                </span>
+              </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to root_path do %>
+                  <%= glyph("home") %> ホーム
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_page_path do %>
+                  <%= glyph("pushpin") %> 新規投稿
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <%= glyph("log-out") %> ログアウト
+                <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to new_user_session_path do %>
+                  <%= glyph("log-in") %> ログイン
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_user_registration_path do %>
+                  <%= glyph("user") %> サインイン
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+      </nav>
+    </header>
+    <% if notice %>
+      <div id="notice" class="alert alert-info" role="alert"><%= notice %></div>
+    <% end %>
     <%= yield %>
+    <footer>
+      <p>Copyright © 2017 @Madogiwa_Boy All Rights Reserved.</p>
+    </footer>
   </body>
 </html>
