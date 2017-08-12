@@ -8,6 +8,8 @@
 <% else %>
   <% favorite = page.favorite.find_by(user_id: current_user.id) %>
   <%= form_for favorite, html: { class: "inline" },  method: "delete" do |f| %>
+    <%= f.hidden_field :page_id %>
+    <%= f.hidden_field :user_id %>
     <%= f.submit "★", class: "favorite_btn favorited" %>
   <% end %>
 <% end %>
