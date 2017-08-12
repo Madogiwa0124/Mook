@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @pages = Page.all.order("updated_at DESC")
+    @pages = Page.favorited_pages(current_user)
   end
 
   def search
