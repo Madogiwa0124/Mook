@@ -46,8 +46,14 @@ class Page < ApplicationRecord
     end
   end
 
-  # ログインユーザーが既にお気に入り済かどうかをチェック
+  # ログインユーザーがお気に入り済かどうかをチェック
   def is_favorited?(user)
     Favorite.exists?(page_id: self.id, user_id: user.id)
+  end
+
+  # ログインユーザーがお気に入り済のページ一覧を返却
+  def self.favorited_pages(user)
+    page_ids = Favorite.where(user_id: user.id).map{ |f| f.page_id }
+    Page.where(id: page_ids).order("updated_at DESC")
   end
 end
