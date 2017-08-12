@@ -2,6 +2,7 @@ class Page < ApplicationRecord
   validates :name, presence: true
   validates :url, presence: true, uniqueness: true
   validates :html, presence: true
+  has_many :favorite
   acts_as_taggable
 
   def self.search(key)
@@ -45,4 +46,8 @@ class Page < ApplicationRecord
     end
   end
 
+  # ログインユーザーが既にお気に入り済かどうかをチェック
+  def is_favorited?(user)
+    Favorite.exists?(page_id: self.id, user_id: user.id)
+  end
 end
