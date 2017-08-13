@@ -2,7 +2,8 @@ class Page < ApplicationRecord
   validates :name, presence: true
   validates :url, presence: true, uniqueness: true
   validates :html, presence: true
-  has_many :favorite
+  has_many :favorite, dependent: :destroy
+  belongs_to :user
   acts_as_taggable
 
   def self.search(key)

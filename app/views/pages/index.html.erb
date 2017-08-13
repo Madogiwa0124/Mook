@@ -23,11 +23,13 @@
         <%= link_to page, class: "btn btn-info btn-sm" do %>
           <%= glyph("eye-open") %>
         <% end %>
-        <%= link_to edit_page_path(page), class: "btn btn-warning btn-sm" do %>
-          <%= glyph("edit") %>
-        <% end %>
-        <%= link_to page, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "#{page.name}を削除してよろしいですか？" } do %>
-          <%= glyph("trash") %>
+        <% if page.user_id == current_user.id %>
+          <%= link_to edit_page_path(page), class: "btn btn-warning btn-sm" do %>
+            <%= glyph("edit") %>
+          <% end %>
+          <%= link_to page, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "#{page.name}を削除してよろしいですか？" } do %>
+            <%= glyph("trash") %>
+          <% end %>
         <% end %>
       </div>
     </div>
