@@ -9,6 +9,8 @@ module Mook
     config.load_defaults 5.1
     # 言語を日本語に変更
     config.i18n.default_locale = :ja
+    # オートロードを有効化
+    config.enable_dependency_loading = true
     # バッチファイルの名前空間
     config.autoload_paths += Dir["#{config.root}/lib"]
     # タイムゾーンを日本時間に変更
