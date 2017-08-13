@@ -12,7 +12,9 @@
         <% end %>
       </p>
       <div class="btn-area">
-        <%= link_to '編集', edit_page_path(@page), class: "btn btn-info" %>
+        <% if @page.user_id == current_user.id %>
+          <%= link_to '編集', edit_page_path(@page), class: "btn btn-info" %>
+        <% end %>
         <%= link_to '戻る', pages_path, class: "btn btn-warning" %>
       </div>
     </div>
