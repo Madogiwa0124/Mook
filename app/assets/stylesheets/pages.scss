@@ -1,56 +1,7 @@
-$bg-color: #FCFCFC;
 $boder-color: #FAFAFA;
 $content-bg-color: #FFFFFF;
 $title-bg-color: #a2e098;
 $title-hilight-color: #d9f4d4;
-
-body{
-  background-color: $bg-color;
-}
-
-.right{
-  text-align: right;
-}
-
-.left{
-  text-align: left;
-}
-
-.center{
-  text-align: center;
-}
-
-.inline{
-  display: inline;
-}
-
-ul{
-  padding: 0px;
-}
-li{
-  list-style: none;
-}
-header{
-  h1{
-    margin: 0px;
-    padding: 10px;
-    background-color: $title-bg-color;
-    color: #FFFFFF;
-  }
-}
-
-footer{ 
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  p{
-    text-align: center;
-    margin: 0px;
-    padding: 10px;
-    background-color: $title-bg-color;
-    color: #FFFFFF;
-  }
-}
 
 .area{
   padding: 5px;
