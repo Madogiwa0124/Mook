@@ -4,6 +4,7 @@ class PagesController < ApplicationController
 
   def index
     @pages = Page.favorited_pages(current_user)
+    @favorites = Favorite.find_by(user_id: current_user.id)
   end
 
   def search

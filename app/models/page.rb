@@ -57,4 +57,10 @@ class Page < ApplicationRecord
     page_ids = Favorite.where(user_id: user.id).map{ |f| f.page_id }
     Page.where(id: page_ids).order("updated_at DESC")
   end
+
+  # 該当ページが既読済かどうかチェック
+  def is_read?(user)
+    favorite = Favorite.find_by(user_id: user.id, page_id: self.id)
+    favorite.read
+  end
 end
