@@ -47,7 +47,6 @@ class PagesController < ApplicationController
   end
 
   def read
-    binding.pry
     favorite = Favorite.find_by(page_id: params[:id], user_id: current_user.id)
     favorite.read = true
     favorite.save
