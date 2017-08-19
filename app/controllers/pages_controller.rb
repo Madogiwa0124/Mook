@@ -46,6 +46,14 @@ class PagesController < ApplicationController
     redirect_to pages_url, notice: 'ページを削除しました。'
   end
 
+  def read
+    binding.pry
+    favorite = Favorite.find_by(page_id: params[:id], user_id: current_user.id)
+    favorite.read = true
+    favorite.save
+    redirect_to params[:url]
+  end
+
   private
     def set_page
       @page = Page.find(params[:id])
