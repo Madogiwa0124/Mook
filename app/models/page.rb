@@ -61,6 +61,7 @@ class Page < ApplicationRecord
   # 該当ページが既読済かどうかチェック
   def is_read?(user)
     favorite = Favorite.find_by(user_id: user.id, page_id: self.id)
-    favorite.read
+    # お気に入りに未登録のページは既読として扱う
+    favorite.present? ? favorite.read : true
   end
 end
