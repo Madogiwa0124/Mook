@@ -43,6 +43,11 @@ class Page < ApplicationRecord
       unless page.html == new_html
         page.html = new_html
         page.save
+        # ページに変更があった場合は未読に戻す
+        Favorite.where(page_id: page.id).each do |f|
+          f.read = false
+          f.save
+        end
       end
     end
   end
