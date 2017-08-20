@@ -1,11 +1,14 @@
 require 'test_helper'
 
 class PageTest < ActiveSupport::TestCase
+  fixtures :users
+
   test "正常な値が設定された場合、正常にページが登録出来ること" do
     page = Page.new
     page.name = "hoge"
     page.url = "https://www.google.co.jp/"
     page.html = page.get_html(page.url)
+    page.user_id = users(:one).id
     assert page.save
   end
 
@@ -49,6 +52,7 @@ class PageTest < ActiveSupport::TestCase
     page.name = "hoge"
     page.url  = "https://google.com"
     page.html = page.get_html(page.url)
+    page.user_id = users(:one).id
     page.save
     page.url = "https://www.yahoo.co.jp/"
     page.html = page.get_html(page.url)
@@ -58,11 +62,16 @@ class PageTest < ActiveSupport::TestCase
   test "検索条件に合致したページのみが返却されること" do
     3.times do |i|
       page = Page.new
-      page.name = "name#{i.to_s}"
+      page.name = "name_#{i.to_s}"
       page.url  = "hogehoge"
       page.html = "hogehoge"
+      page.user_id = users(:one).id
       page.save
     end
     assert Page.search("0").count == 1
+  end
+
+  test "お気に入り登録済のページのみが検索されること" do
+    # TODO:テストを書く
   end
 end
