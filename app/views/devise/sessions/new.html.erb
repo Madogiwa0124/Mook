@@ -6,28 +6,52 @@
     <span class="logo"><%= glyph("book") %></span>
   </div>
   <div class="login-form">
-  <h1>ログイン</h1>
-  <div class="form-group left">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <label>メールアドレス</label>
-      <%= f.email_field :email, autofocus: true, class: "form-control" %>
-      <br>
-      <label>パスワード</label>
-      <%= f.password_field :password, autocomplete: "off",  class: "form-control" %>
-      <% if devise_mapping.rememberable? %>
+    <h1>ログイン</h1>
+    <div class="form-group left">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <label>メールアドレス</label>
+        <%= f.email_field :email, autofocus: true, class: "form-control" %>
         <br>
-        <div class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me, class: "checkbox-inline" %>
+        <label>パスワード</label>
+        <%= f.password_field :password, autocomplete: "off",  class: "form-control" %>
+        <% if devise_mapping.rememberable? %>
+          <br>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me, class: "checkbox-inline" %>
+          </div>
+        <% end -%>
+        <br>
+        <div class="actions center">
+          <%= f.submit "ログイン", class:"btn btn-primary" %>
         </div>
-      <% end -%>
+      <% end %>
       <br>
-      <div class="actions center">
-        <%= f.submit "ログイン", class:"btn btn-primary" %>
-      </div>
-    <% end %>
-    <br>
-    <%= render "devise/shared/links" %>
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
+</div>
+<div id="description" class="container">
+  <div class="about">
+    <h2>Moookで出来ること</h2>
+    <div class="col-md-4">
+      <div class="value">
+        <h3>ページの更新を通知</h3>
+        <p class="icon"><%= glyph("exclamation-sign") %></p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="value">
+        <h3>ページをまとめて管理</h3>
+        <p class="icon"><%= glyph("list-alt") %></p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="value">
+        <h3>ページを探せる</h3>
+        <p class="icon"><%= glyph("search") %></p>
+      </div>
+    </div>
+    <p>※β版のため、不具合及び公開を停止する可能性がございますので、ご了承ください。</p>
   </div>
 </div>
