@@ -31,8 +31,8 @@ class Page < ApplicationRecord
       # utf-8にエンコードして返却
       return html.to_s.encode('UTF-8')
     rescue => e
-      puts "HTML取得時に例外が発生しました。"
-      puts e.message
+      logger.error "HTML取得時に例外が発生しました。"
+      logger.error e.message
     end
   end
 
