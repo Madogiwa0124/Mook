@@ -16,6 +16,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'acts-as-taggable-on'
+gem 'rename'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
