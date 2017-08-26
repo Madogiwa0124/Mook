@@ -1,0 +1,13 @@
+one:
+  id: 1
+  name: "hoge"
+  url: "https://www.yahoo.co.jp/"
+  html: "hoge"
+  user_id: one
+two:
+  id: 2
+  name: "fuga"
+  url: "https://www.bing.com/"
+  html: "fuga"
+  user_id: one
+
