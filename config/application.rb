@@ -4,7 +4,7 @@ require 'rails/all'
 
 Bundler.require(*Rails.groups)
 
-module Mook
+module Moook
   class Application < Rails::Application
     config.load_defaults 5.1
     # 言語を日本語に変更
