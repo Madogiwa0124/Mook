@@ -69,4 +69,22 @@ class Page < ApplicationRecord
     # お気に入りに未登録のページは既読として扱う
     favorite.present? ? favorite.read : true
   end
+
+  # お気入り登録件数の降順で指定された件数分、ページを取得する。
+  def self.get_popular_pages(count) 
+    # sqlの生成
+    sql = <<-"EOS"
+    SELECT 
+      pages.name,
+      pages.url,
+      COUNT(*)
+    FROM pages
+    INNER JOIN favorites
+      ON pages.id = favorites.page_id
+    GROUP BY pages.name, pages.url
+    ORDER BY COUNT(*) DESC
+    EOS
+    # sqlを実行し、取得結果をhashに変換
+    ActiveRecord::Base.connection.select_all(sql).to_hash      
+  end  
 end

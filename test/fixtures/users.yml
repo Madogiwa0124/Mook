@@ -1,3 +1,6 @@
 one:
   id: 1
   email: "hogehoge@email.com"
+one:
+  id: 2
+  email: "fugafuga@email.com"

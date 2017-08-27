@@ -1,0 +1,41 @@
+<div id="description" class="container">
+  <div class="about">
+    <h2>Moookで出来ること</h2>
+    <div class="col-md-4">
+      <div class="value">
+        <h3>ページの更新を通知</h3>
+        <p class="icon"><%= glyph("exclamation-sign") %></p>
+        <p>好きなページを登録、1時間おきに更新をチェックします！</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="value">
+        <h3>ページを一括管理</h3>
+        <p class="icon"><%= glyph("list-alt") %></p>
+        <p>Web漫画等、複数のサイトに散らばった好きなページを一括管理できます！</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="value">
+        <h3>ページを検索</h3>
+        <p class="icon"><%= glyph("search") %></p>
+        <p>みんなが投稿したページを検索し、更新通知を受け取れます！</p>
+      </div>
+    </div>
+    <div id="ranking" class="container">
+      <h2>人気のページ</h2>
+      <div class = "left">
+        <% pages = Page.get_popular_pages(3) %>
+        <% rank = 1 %>
+        <% pages.each do |page| %>
+          <div class="value">
+            <h3><%= rank %>位 <%= page["name"] %></h3>
+            <p><%= link_to page["url"] %></p>
+          </div>
+          <% rank += 1%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <p>※β版のため、不具合及び公開を停止する可能性がございますので、ご了承ください。</p>
+</div>
