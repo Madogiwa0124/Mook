@@ -33,6 +33,8 @@ class Page < ApplicationRecord
     rescue => e
       logger.error "HTML取得時に例外が発生しました。"
       logger.error e.message
+      # HTML取得時にエラーが発生した場合はHTMLを初期化
+      html = nil
     end
   end
 
