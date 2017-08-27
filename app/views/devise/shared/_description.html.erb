@@ -30,7 +30,7 @@
         <% pages.each do |page| %>
           <div class="value">
             <h3><%= rank %>位 <%= page["name"] %></h3>
-            <p><%= link_to page["url"] %></p>
+            <p><%= link_to page["url"], page["url"] %></p>
           </div>
           <% rank += 1%>
         <% end %>
