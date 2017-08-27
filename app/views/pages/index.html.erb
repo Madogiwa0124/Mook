@@ -14,7 +14,13 @@
           <% end %>
           <%= page.name %>
         </div>
-        <p class="url"><%= link_to page.url,  read_page_path(page, url: page.url) %></p>
+        <p class="url">
+          <% if page.is_favorited?(current_user) %>
+            <%= link_to page.url,  read_page_path(page, url: page.url) %>
+          <% else %>
+            <%= link_to page.url, page.url %>
+          <% end %>
+        </p>
       </div>
       <p class="tags_area">
         <% page.tag_list[0..2].each do |tag| %>
