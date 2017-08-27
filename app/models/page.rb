@@ -74,7 +74,7 @@ class Page < ApplicationRecord
   def self.get_popular_pages(count) 
     # sqlの生成
     sql = <<-"EOS"
-    SELECT 
+    SELECT
       pages.name,
       pages.url,
       COUNT(*)
@@ -83,6 +83,7 @@ class Page < ApplicationRecord
       ON pages.id = favorites.page_id
     GROUP BY pages.name, pages.url
     ORDER BY COUNT(*) DESC
+    LIMIT #{count}
     EOS
     # sqlを実行し、取得結果をhashに変換
     ActiveRecord::Base.connection.select_all(sql).to_hash      
