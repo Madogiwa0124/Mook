@@ -3,8 +3,8 @@ require 'test_helper'
 class FavoriteTest < ActiveSupport::TestCase
   test "指定したuser_idとpage_idを持つお気入りTBLのレコードが作成されること" do
     favorite = Favorite.new
-    favorite.user_id = 1
-    favorite.page_id = 2
+    favorite.user_id = 2
+    favorite.page_id = 1
     assert favorite.save
   end
 

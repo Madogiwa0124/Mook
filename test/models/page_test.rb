@@ -61,7 +61,7 @@ class PageTest < ActiveSupport::TestCase
     page.html = page.get_html(page.url)
     page.user_id = users(:one).id
     page.save
-    assert Page.all.first.destroy
+    assert Page.all.last.destroy
   end
 
   test "pageのHTMLに変更が返って来たときに変更を検知出来ること" do 
@@ -90,7 +90,7 @@ class PageTest < ActiveSupport::TestCase
 
   test "お気に入り登録済のページが返却されること" do
     user = users(:one)
-    assert_equal Page.favorited_pages(user).count, 1
+    assert_equal Page.favorited_pages(user).count, 2
   end
 
   test "指定したキーワードを持つページが検索出来ること" do
@@ -111,6 +111,13 @@ class PageTest < ActiveSupport::TestCase
 
   test "お気に入り未登録のページは既読として扱われること" do
     assert pages(:two).is_read?(users(:one))
+  end
+
+  test "お気入り登録件数の降順で指定された件数分、ページが取得されること" do
+    count = 2
+    pages = Page.get_popular_pages(count)
+    assert_equal pages.count, count
+    assert_equal pages[0]["name"], "hoge"
   end
 
 end
