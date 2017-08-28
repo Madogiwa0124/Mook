@@ -1,6 +1,8 @@
 <div id="description" class="container">
   <div class="about">
     <h2>Moookで出来ること</h2>
+    <h3>Moookはwebページの更新管理ツールです。</h3>
+    <h3>お気に入りのページのいつもの更新をいつでも確認できます。</h3>
     <div class="col-md-4">
       <div class="value">
         <h3>ページの更新を通知</h3>
@@ -23,7 +25,8 @@
       </div>
     </div>
     <div id="ranking" class="container">
-      <h2>人気のページ</h2>
+      <h2>人気のページ TOP3</h2>
+      <h3>みんなにお気に入りされているページのランキングです。</h3>
       <div class = "left">
         <% pages = Page.get_popular_pages(3) %>
         <% rank = 1 %>
