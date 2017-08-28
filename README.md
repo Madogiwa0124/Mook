@@ -1,13 +1,19 @@
 # Webページ更新管理ツール"Moook"
 このリポジトリは、Webページ更新管理ツール"Moook"のリポジトリです。  
 Moookを使えば、webページの更新情報を一括管理出来ます。  
-※作業の状況は`issues`でご確認ください。
 
-## Moookで出来ること(予定)
+## Moookで出来ること
+主な機能は下記です！
 1. 更新確認を行いたいwebページを登録
 2. 1時間おきに登録したページの更新有無を確認
 3. 更新されていれば通知
 
-完走出来るように頑張る(｀・ω・´)
+## ページのURL
+Moookのベータ版を公開しました！  
+[https://moook.herokuapp.com/](https://moook.herokuapp.com/)
 
+## 今後実装予定の機能
+`issues`でご確認ください。
+
+## お問い合わせ
 機能のご要望等は、[@Madogiwa_Boy](https://twitter.com/Madogiwa_Boy)まで、お寄せ下さい(/･ω･)/
