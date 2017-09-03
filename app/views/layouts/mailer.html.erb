@@ -9,5 +9,6 @@
 
   <body>
     <%= yield %>
+    <%= MAIL_SIGNATURE.gsub(/(\r\n|\r|\n)/, "<br>") %>
   </body>
 </html>
