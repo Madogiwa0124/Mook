@@ -1,6 +1,6 @@
 <div id="description" class="container">
-  <div class="about">
-    <h2>Moookで出来ること</h2>
+  <div class="about row">
+    <h2><span>Moookで出来ること</span></h2>
     <h3>Moookはwebページの更新管理ツールです。</h3>
     <h3>お気に入りのページのいつもの更新をいつでも確認できます。</h3>
     <div class="col-md-4">
@@ -24,21 +24,23 @@
         <p>みんなが投稿したページを検索し、更新通知を受け取れます！</p>
       </div>
     </div>
-    <div id="ranking" class="container">
-      <h2>人気のページ TOP3</h2>
-      <h3>みんなにお気に入りされているページのランキングです。</h3>
-      <div class = "left">
-        <% pages = Page.get_popular_pages(3) %>
-        <% rank = 1 %>
-        <% pages.each do |page| %>
-          <div class="value">
-            <h3><%= rank %>位 <%= page["name"] %></h3>
-            <p><%= link_to page["url"], page["url"] %></p>
-          </div>
-          <% rank += 1%>
-        <% end %>
-      </div>
-    </div>
   </div>
-  <p>※β版のため、不具合及び公開を停止する可能性がございますので、ご了承ください。</p>
+  <div class="ranking row">
+    <h2><span>人気のページ TOP3</span></h2>
+    <h3>みんなにお気に入りされているページのランキングです。</h3>
+    <% pages = Page.get_popular_pages(3) %>
+    <% rank = 1 %>
+    <% pages.each do |page| %>
+      <div class="col-md-4 rank">
+        <div class="value">
+          <h3> - <%= rank %>位 - </h3> 
+          <h3><%= page["name"] %></h3>
+          <p><%= link_to page["url"], page["url"] %></p>
+        </div>
+      </div>
+      <hr class="visible-xs-block visible-sm-block">
+      <% rank += 1%>
+    <% end %>
+  </div>
+  <p class="supplement row">※β版のため、不具合及び公開を停止する可能性がございますので、ご了承ください。</p>
 </div>
