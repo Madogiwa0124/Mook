@@ -38,22 +38,6 @@ class Page < ApplicationRecord
     end
   end
 
-  # 登録されたページのHTMLに変更があったら更新する。
-  def self.exec_html_change_batch
-    Page.all.each do |page|
-      new_html = page.get_html(page.url)
-      unless page.html == new_html
-        page.html = new_html
-        page.save
-        # ページに変更があった場合は未読に戻す
-        Favorite.where(page_id: page.id).each do |f|
-          f.read = false
-          f.save
-        end
-      end
-    end
-  end
-
   # ログインユーザーがお気に入り済かどうかをチェック
   def is_favorited?(user)
     Favorite.exists?(page_id: self.id, user_id: user.id)
