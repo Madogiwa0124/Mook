@@ -4,9 +4,37 @@
   background-size: cover;
   width: 100vw;
 }
+
 #description{
   text-align: center;
   padding-bottom: 45px;
+  margin: 0px;
+  h2{
+    span{
+      border-bottom: 5px solid #a2e098;
+    }
+  }
+  .about{
+    background-size: cover;
+    background-color: #F1F1F1;
+    width: 100vw;
+    padding-bottom: 20px;
+  }
+  .ranking{
+    background-size: cover;
+    background-color: #FFFFFF;
+    width: 100vw;
+    padding-bottom: 50px;
+    .rank{
+      border-left: 1px solid #DDDDDD;
+      border-right: 1px solid #DDDDDD;
+    }
+  }
+  .supplement{
+    background-size: cover;
+    background-color: #FFFFFF;
+    width: 100vw;
+  }
   h2{
     font-size: 40px;
     font-weight: bold;
