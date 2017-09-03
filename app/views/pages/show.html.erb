@@ -5,7 +5,7 @@
       <%= @page.name %>
     </h1>
     <div class="content-area">
-      <p class="url">URL：<%= link_to @page.url, @page.url %></p>
+      <p class="url">URL：<%= link_to @page.url, @page.url, :target=>["_blank"] %></p>
       <p class="tags_area">
         <% @page.tag_list.each do |tag| %>
           <%= link_to tag, search_pages_path(search_text: tag), class: "label label-primary" %>
