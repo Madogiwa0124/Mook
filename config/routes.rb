@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get :read
     end
   end
-  resources :favorites
+  resources :favorites only: [:create, :destroy]
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
