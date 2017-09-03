@@ -20,7 +20,7 @@ Rails.application.configure do
   end
   config.active_record.dump_schema_after_migration = false
   # 本番環境用メール設定
-  config.action_mailer.default_url_options = { host: SITE_DOMAIN } #hoge.herokuapp.com
+  config.action_mailer.default_url_options = { host: "moook.herokuapp.com" }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings =
   {
