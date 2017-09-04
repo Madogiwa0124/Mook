@@ -30,10 +30,12 @@ class Tasks::Batch
     target_users = User.find(target_user_ids)
     # 通知対象のユーザー分処理を実施
     target_users.each do |user|
-      # お気に入りかつ更新されているページの一覧を取得 
-      pages = Page.favorited_pages(user).where(id: target_page_ids)
-      # 通知処理を実施
-      NoticeMailer.sendmail_update_pages(user, pages).deliver
+      if user.send_mail == "1"
+        # お気に入りかつ更新されているページの一覧を取得 
+        pages = Page.favorited_pages(user).where(id: target_page_ids)
+        # 通知処理を実施
+        NoticeMailer.sendmail_update_pages(user, pages).deliver
+      end
     end
   end
 end
