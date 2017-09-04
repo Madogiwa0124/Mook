@@ -22,7 +22,6 @@ class Page < ApplicationRecord
       # HTMLの取得
       html = open(url).read
       # HTMLの整形
-      html = html.sub(/^<!DOCTYPE html(.*)$/, '<!DOCTYPE html>')
       html = html.sub(/\r\n|\r|\n/, "")
       html = Nokogiri::HTML.parse(html, url);
       # HTMLからstyle、scriptタグを削除
