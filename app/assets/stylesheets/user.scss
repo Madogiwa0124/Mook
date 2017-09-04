@@ -95,3 +95,37 @@
   width: 370px;
   border-radius: 10px;
 }
+
+.myinfo{
+  h1{
+    padding: 10px;
+    color: #FFFFFF;
+    background-color: lightblue;
+    border-radius: 10px 10px 0px 0px;
+  }
+  .myinfo_form{
+    padding: 20px;
+  }
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+.danger_area{
+  h2{
+    padding: 10px;
+    color: #FFFFFF;
+    background-color: #EB6464;
+    border-radius: 10px 10px 0px 0px;
+  }
+  .danger_form{
+    padding: 0px 20px 10px 20px;
+  }
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+
+.before_button{
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
