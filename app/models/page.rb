@@ -26,7 +26,16 @@ class Page < ApplicationRecord
       html = Nokogiri::HTML.parse(html, url);
       # HTMLからstyle、scriptタグを削除
       rm_tag = ["script", "style", "image", "code"]
-      html.css('body').search(rm_tag.join(',')).remove
+      html.css('body,head').search(rm_tag.join(',')).remove
+
+      # 単純なHTMLの比較では上手く更新を検知出来ないページ対応
+      irregular_pages = [
+        # となりのヤングジャンプ
+        { url: "http://www.tonarinoyj.jp/", selector: ".single-backnumber" }
+      ]
+      # 特定の部分のみをhtmlとして保存する
+      irregular_pages.each{ |page| html = html.css(page[:selector]) if url.include?(page[:url]) }
+      
       # utf-8にエンコードして返却
       return html.to_s.encode('UTF-8')
     rescue => e
