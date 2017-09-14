@@ -3,6 +3,7 @@ class Page < ApplicationRecord
   validates :url, presence: true, uniqueness: true
   validates :html, presence: true
   has_many :favorite, dependent: :destroy
+  has_many :comments, dependent: :destroy
   belongs_to :user
   acts_as_taggable
 
