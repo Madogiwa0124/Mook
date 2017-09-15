@@ -20,6 +20,12 @@
         <% end %>
         <%= link_to '戻る', pages_path, class: "btn btn-info" %>
       </div>
+      <hr>
+      <div class="comments_area">
+        <%= render 'comments/form' %>
+        <hr>
+        <%= render 'comments/index' %>
+      </div>
     </div>
   </div>
 </div>

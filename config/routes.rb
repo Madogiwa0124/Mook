@@ -7,10 +7,10 @@ Rails.application.routes.draw do
     end
     member do 
       get :read
+      resources :comments, only: [:create, :edit, :update, :destroy]
     end
   end
   resources :favorites, only: [:create, :destroy]
-  
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
