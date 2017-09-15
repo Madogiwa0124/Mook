@@ -13,6 +13,14 @@ class PagesController < ApplicationController
   end
 
   def show
+    # comment_idが渡されていれば、既存のコメントを取得
+    if params[:comment_id].blank?
+      @comment = @page.comments.build
+    else
+      @comment = Comment.find(params[:comment_id])
+    end
+    # 最新のものから降順に取得
+    @comments = Comment.where(page_id: params[:id]).order("id DESC")
   end
 
   def new
