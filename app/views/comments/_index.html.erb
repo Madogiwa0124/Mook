@@ -1,9 +1,7 @@
-<% index = 0 %>
 <% @comments.each do |comment| %>
-  <% index += 1 %>
-  <div class="comment" id="comment_<%= index %>" >
-    <p><%= "##{index}" %></p>
-    <p><%= comment.content %></p>
+  <div class="comment" id="comment_<%= comment.id %>" >
+    <p><%= "##{comment.id}" %></p>
+    <p><%= format_comment(comment.content).html_safe %></p>
     <p class="right"><%= format_date comment.updated_at %></p>
     <% if comment.user_id == current_user.id %>
       <p class="right">
