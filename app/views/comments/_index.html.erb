@@ -1,0 +1,20 @@
+<% @comments.each do |comment| %>
+  <div class="comment" id="comment_<%= comment.id %>" >
+    <p><%= "##{comment.id}" %></p>
+    <p><%= format_comment(comment.content).html_safe %></p>
+    <p class="right"><%= format_date comment.updated_at %></p>
+    <% if comment.user_id == current_user.id %>
+      <p class="right">
+        <%= link_to edit_comment_path(comment) do %>
+          <%= glyph("edit") %>
+        <% end %>
+        ｜
+        <% delete_msg = "コメント「#{comment.content}」を削除してよろしいですか？" %>
+        <%= link_to comment, method: :delete, data: { confirm: delete_msg } do %>
+          <%= glyph("trash") %>
+        <% end %>
+      </p>
+    <% end %>
+    <hr>
+  </div>
+<% end %>

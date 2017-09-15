@@ -15,11 +15,13 @@
           <%= page.name %>
         </div>
         <p class="url">
-          <% if page.is_favorited?(current_user) %>
-            <%= link_to page.url,  read_page_path(page, url: page.url), :target=>["_blank"] %>
-          <% else %>
-            <%= link_to page.url, page.url %>
-          <% end %>
+          <p>URL:
+            <% if page.is_favorited?(current_user) %>
+              <%= link_to page.url,  read_page_path(page, url: page.url), :target=>["_blank"] %>
+            <% else %>
+              <%= link_to page.url, page.url %>
+            <% end %>
+          </p>
         </p>
       </div>
       <p class="tags_area">
