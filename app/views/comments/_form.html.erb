@@ -1,0 +1,11 @@
+<h3>コメント</h3>
+<%= form_for @comment do |f| %>
+  <div class="input-group">
+    <span class="input-group-addon"><%= glyph("pencil") %></span>
+    <%= f.hidden_field :page_id, value: @page.id %>
+    <%= f.text_field :content, class: "form-control" %>
+    <span class="input-group-btn">
+      <%= f.submit "送信", class: "btn btn-primary" %>
+    </span>
+  </div>
+<% end %>
