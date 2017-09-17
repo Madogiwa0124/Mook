@@ -23,24 +23,27 @@ class Page < ApplicationRecord
       # HTMLの取得
       html = open(url).read
       # HTMLの整形
-      html = html.sub(/\r\n|\r|\n/, "")
+      html = html.sub(/\r\n|\r|\n/, '')
       html = Nokogiri::HTML.parse(html, url);
       # HTMLからstyle、scriptタグを削除
-      rm_tag = ["script", "style", "image", "code"]
+      rm_tag = ['script', 'style', 'image', 'code']
       html.css('body,head').search(rm_tag.join(',')).remove
 
       # 単純なHTMLの比較では上手く更新を検知出来ないページ対応
       irregular_pages = [
         # となりのヤングジャンプ
-        { url: "http://www.tonarinoyj.jp/", selector: ".single-backnumber" }
+        { url: 'http://www.tonarinoyj.jp/', selector: '.single-backnumber' },
+        { url: 'http://to-ti.in/',          selector: '.episode' }
+
       ]
       # 特定の部分のみをhtmlとして保存する
-      irregular_pages.each{ |page| html = html.css(page[:selector]) if url.include?(page[:url]) }
-      
+      irregular_pages.each do |page|
+        html = html.css(page[:selector]) if url.include?(page[:url])
+      end
       # utf-8にエンコードして返却
       return html.to_s.encode('UTF-8')
     rescue => e
-      logger.error "HTML取得時に例外が発生しました。"
+      logger.error 'HTML取得時に例外が発生しました。'
       logger.error e.message
       # HTML取得時にエラーが発生した場合はHTMLを初期化
       html = nil
