@@ -34,7 +34,6 @@ class Page < ApplicationRecord
         # となりのヤングジャンプ
         { url: 'http://www.tonarinoyj.jp/', selector: '.single-backnumber' },
         { url: 'http://to-ti.in/',          selector: '.episode' }
-
       ]
       # 特定の部分のみをhtmlとして保存する
       irregular_pages.each do |page|
