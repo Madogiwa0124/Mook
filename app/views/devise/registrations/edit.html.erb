@@ -1,7 +1,37 @@
 <%= devise_error_messages %>
 <div class="container">
-  <div class="myinfo">
+  <div class="statistics">
     <h1>マイページ</h1>
+    <div class="statistics_detail">
+      <h4>あなたの情報</h4>
+      <ul class="list-group">
+        <li class="list-group-item">
+          登録したページ数
+          <span class="badge badge-info">
+            <%= current_user.pages.count %>
+          </span>
+        </li>
+        <li class="list-group-item">
+          お気に入りに登録しているページ数
+          <span class="badge badge-info">
+            <%= current_user.favorite.count %>
+          </span>
+        </li>
+        <li class="list-group-item">
+          投稿したコメント数
+          <span class="badge badge-info">
+            <%= current_user.comments.count %>
+          </span>
+        </li>
+      </ul>
+      <div id="tag_info" data-json="<%= current_user.favorite_tags_info.to_json %>" >
+        <h5 class="left">良くお気に入りに登録しているタグ</h5>
+        <canvas id="mycanvas"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="myinfo">
+    <h1>アカウント情報</h1>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <div class="myinfo_form">
         <div class="form-group">
