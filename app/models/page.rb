@@ -17,32 +17,33 @@ class Page < ApplicationRecord
     (result1 + result2).uniq.sort_by{ |v| v['updated_at'] }.reverse
   end
 
+  def format_html(html)
+    # HTMLからstyle、scriptタグを削除
+    rm_tag = %w[script style image code]
+    html.css('body,head').search(rm_tag.join(',')).remove
+    # 不要なクラスを持つ要素を削除
+    rm_class = %w[.tdftpr .tdftlink]
+    html.css('body,head').search(rm_class.join(',')).remove
+    # 単純なHTMLの比較では上手く更新を検知出来ないページ対応
+    irregular_pages = [
+      { url: 'http://www.tonarinoyj.jp/', selector: '.single-backnumber' },
+      { url: 'http://to-ti.in/',          selector: '.episode' }
+    ]
+    # 特定の部分のみをhtmlとして保存する
+    irregular_pages.each do |page|
+      html = html.css(page[:selector]) if url.include?(page[:url])
+    end
+    html
+  end
+
   def get_html(url)
-    charset = nil
     begin
       # HTMLの取得
       html = open(url).read
       # HTMLの整形
       html = html.sub(/\r\n|\r|\n/, '')
       html = Nokogiri::HTML.parse(html, url);
-      # HTMLからstyle、scriptタグを削除
-      rm_tag = %w(script style image code)
-      html.css('body,head').search(rm_tag.join(',')).remove
-      # 不要なクラスを持つ要素を削除
-      rm_class = %w(.tdftpr .tdftlink)
-      html.css('body,head').search(rm_class.join(',')).remove
-
-      # 単純なHTMLの比較では上手く更新を検知出来ないページ対応
-      irregular_pages = [
-        # となりのヤングジャンプ
-        { url: 'http://www.tonarinoyj.jp/', selector: '.single-backnumber' },
-        # トーチ
-        { url: 'http://to-ti.in/',          selector: '.episode' }
-      ]
-      # 特定の部分のみをhtmlとして保存する
-      irregular_pages.each do |page|
-        html = html.css(page[:selector]) if url.include?(page[:url])
-      end
+      format_html(html)
       # utf-8にエンコードして返却
       return html.to_s.encode('UTF-8')
     rescue => e
@@ -88,5 +89,5 @@ class Page < ApplicationRecord
     EOS
     # sqlを実行し、取得結果をhashに変換
     ActiveRecord::Base.connection.select_all(sql).to_hash      
-  end  
+  end
 end
