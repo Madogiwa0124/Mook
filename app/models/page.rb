@@ -43,7 +43,7 @@ class Page < ApplicationRecord
       # HTMLの整形
       html = html.sub(/\r\n|\r|\n/, '')
       html = Nokogiri::HTML.parse(html, url);
-      format_html(html)
+      html = format_html(html)
       # utf-8にエンコードして返却
       return html.to_s.encode('UTF-8')
     rescue => e
