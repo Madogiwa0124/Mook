@@ -24,9 +24,13 @@
           </span>
         </li>
       </ul>
-      <div id="tag_info" data-json="<%= current_user.favorite_tags_info.to_json %>" >
-        <h5 class="left">良くお気に入りに登録しているタグ</h5>
-        <canvas id="mycanvas" height="300" width="300"></canvas>
+      <div id="tag_info" class="panel panel-default" data-json="<%= current_user.favorite_tags_info.to_json %>" >
+        <div class="panel-heading">
+          <h5 class="left">良くお気に入りに登録しているタグ</h5>
+        </div>
+        <div class="panel-body">
+          <canvas id="mycanvas" height="300" width="300"></canvas>
+        </div>
       </div>
     </div>
   </div>
