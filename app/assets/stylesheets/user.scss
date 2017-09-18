@@ -96,6 +96,27 @@
   border-radius: 10px;
 }
 
+.statistics{
+  h1{
+    padding: 10px;
+    color: #FFFFFF;
+    background-color: lightgreen;
+    border-radius: 10px 10px 0px 0px;
+  }
+  .statistics_detail{
+    padding: 20px;   
+  }
+  .badge-info{
+    background-color: #F57668;
+  }
+  #tag_info{
+    text-align: center;
+  }
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+
 .myinfo{
   h1{
     padding: 10px;

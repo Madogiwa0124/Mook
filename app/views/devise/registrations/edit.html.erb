@@ -1,7 +1,37 @@
 <%= devise_error_messages %>
 <div class="container">
-  <div class="myinfo">
+  <div class="statistics">
     <h1>マイページ</h1>
+    <div class="statistics_detail">
+      <h4>あなたの情報</h4>
+      <ul class="list-group">
+        <li class="list-group-item">
+          登録したページ数
+          <span class="badge badge-info">
+            <%= current_user.pages.count %>
+          </span>
+        </li>
+        <li class="list-group-item">
+          お気に入りに登録しているページ数
+          <span class="badge badge-info">
+            <%= current_user.favorite.count %>
+          </span>
+        </li>
+        <li class="list-group-item">
+          投稿したコメント数
+          <span class="badge badge-info">
+            <%= current_user.comments.count %>
+          </span>
+        </li>
+      </ul>
+      <div id="tag_info" data-json="<%= current_user.favorite_tags_info.to_json %>" >
+        <h5 class="left">良くお気に入りに登録しているタグ</h5>
+        <canvas id="mycanvas" height="300" width="300"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="myinfo">
+    <h1>アカウント情報</h1>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <div class="myinfo_form">
         <div class="form-group">
@@ -39,3 +69,35 @@
   </div>
   <%= link_to "戻る", :back, class: "btn btn-info before_button"  %>
 </div>
+<script>
+  // 定数管理
+  var TEEMA = ["lightcoral", "lightsalmon", "lightgreen", "lightblue"]
+  var MAX_DATA_CNT = 8
+
+  // データの取得とグラフの描画
+  tags = JSON.parse(document.getElementById('tag_info').dataset.json);
+  createTagPieGraf(tags)
+
+  // 円グラフ描画関数
+  function createTagPieGraf(data) {
+    // データの整形
+    data = data.sort(function (a, b) {
+      if (a.value < b.value) return  1;
+      if (a.value > b.value) return -1;
+      return 0;
+    }).slice(0, MAX_DATA_CNT);
+    // 色の設定
+    for (var i = 0; i < data.length; i++) {
+      data[i].color = TEEMA[i % 4];
+    }
+    // 生成オプションの設定
+    var options = {
+      animation: true,
+      animationSteps: 60,
+      animationEasing: "easeInOutCubic",
+      responsive: false
+    };
+    // 円グラフの描画
+    var myChart = new Chart(document.getElementById("mycanvas").getContext("2d")).Pie(data, options);  
+  }
+</script>
