@@ -26,8 +26,11 @@ class Page < ApplicationRecord
       html = html.sub(/\r\n|\r|\n/, '')
       html = Nokogiri::HTML.parse(html, url);
       # HTMLからstyle、scriptタグを削除
-      rm_tag = ['script', 'style', 'image', 'code']
+      rm_tag = %w(script style image code)
       html.css('body,head').search(rm_tag.join(',')).remove
+      # 不要なクラスを持つ要素を削除
+      rm_class = %w(.tdftpr .tdftlink)
+      html.css('body,head').search(rm_class.join(',')).remove
 
       # 単純なHTMLの比較では上手く更新を検知出来ないページ対応
       irregular_pages = [
