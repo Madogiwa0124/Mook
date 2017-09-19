@@ -19,7 +19,7 @@
             <% if page.is_favorited?(current_user) %>
               <%= link_to page.url,  read_page_path(page, url: page.url), :target=>["_blank"] %>
             <% else %>
-              <%= link_to page.url, page.url %>
+              <%= link_to page.url, page.url, :target=>["_blank"] %>
             <% end %>
           </p>
         </p>
