@@ -73,21 +73,11 @@ class Page < ApplicationRecord
   end
 
   # お気入り登録件数の降順で指定された件数分、ページを取得する。
-  def self.get_popular_pages(count) 
-    # sqlの生成
-    sql = <<-"EOS"
-    SELECT
-      pages.name,
-      pages.url,
-      COUNT(*)
-    FROM pages
-    INNER JOIN favorites
-      ON pages.id = favorites.page_id
-    GROUP BY pages.name, pages.url
-    ORDER BY COUNT(*) DESC
-    LIMIT #{count}
-    EOS
-    # sqlを実行し、取得結果をhashに変換
-    ActiveRecord::Base.connection.select_all(sql).to_hash      
+  def self.get_popular_pages(count)
+    # お気に入りを内部結合し、お気に入られ件数の降順で指定件数文ページを取得
+    Page.joins(:favorite)
+        .select('pages.name, pages.url, COUNT(*)')
+        .group(:name, :url)
+        .order('COUNT(*) DESC').limit(count)
   end
 end
