@@ -116,8 +116,8 @@ class PageTest < ActiveSupport::TestCase
   test "お気入り登録件数の降順で指定された件数分、ページが取得されること" do
     count = 2
     pages = Page.get_popular_pages(count)
-    assert_equal pages.count, count
-    assert_equal pages[0]["name"], "hoge"
+    assert_equal pages.length, count
+    assert_equal pages.first.name, "hoge"
   end
 
 end
