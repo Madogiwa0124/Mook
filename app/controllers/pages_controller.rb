@@ -3,12 +3,13 @@ class PagesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @pages = Page.favorited_pages(current_user)
+    @pages = Page.favorited_pages(current_user).page(params[:page])
     @favorites = Favorite.find_by(user_id: current_user.id)
   end
 
   def search
     @pages = Page.search(params[:search_text])
+    @pages = Kaminari.paginate_array(@pages).page(params[:page])
     render 'index'
   end
 
@@ -21,6 +22,7 @@ class PagesController < ApplicationController
     end
     # 最新のものから降順に取得
     @comments = Comment.where(page_id: params[:id]).order("id DESC")
+    @comments = @comments.page(params[:page]).per(10)
   end
 
   def new
@@ -62,6 +64,7 @@ class PagesController < ApplicationController
   end
 
   private
+
     def set_page
       @page = Page.find(params[:id])
     end
