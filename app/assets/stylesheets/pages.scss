@@ -3,9 +3,6 @@ $content-bg-color: #FFFFFF;
 $title-bg-color: #a2e098;
 $title-hilight-color: #d9f4d4;
 
-.area{
-  padding: 5px;
-}
 .title{
   padding: 5px;
   margin: 0px;
@@ -48,36 +45,39 @@ $title-hilight-color: #d9f4d4;
 #index{
   margin-top: 10px;
   padding-bottom: 100px;
-  .page{
-    background-color: $content-bg-color;
-    word-wrap: break-word;
-    .contents-area{
-      height: 120px;
-      .title{
-        font-weight: bold;
-        font-size: 20px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        border-bottom: 1px lightgreen solid;
-        .read{
-          color: #DD0000;
+  .area{
+    padding: 5px;
+    .page{
+      background-color: $content-bg-color;
+      word-wrap: break-word;
+      .contents-area{
+        height: 120px;
+        .title{
+          font-weight: bold;
+          font-size: 20px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          border-bottom: 1px lightgreen solid;
+          .read{
+            color: #DD0000;
+          }
+        }
+        .url{
+          font-size: 16px;
         }
       }
-      .url{
-        font-size: 16px;
+      .tags_area{
+        height: 30px;
       }
+      .btn-area{
+        padding-top: 12px; 
+        border-top: 1px solid $boder-color;
+      }
+      border: 1px solid $boder-color;
+      border-radius: 5px;
+      padding: 10px;
     }
-    .tags_area{
-      height: 30px;
-    }
-    .btn-area{
-      padding-top: 12px; 
-      border-top: 1px solid $boder-color;
-    }
-    border: 1px solid $boder-color;
-    border-radius: 5px;
-    padding: 10px;
   }
 }
 
