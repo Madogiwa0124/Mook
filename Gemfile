@@ -17,6 +17,7 @@ gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'acts-as-taggable-on'
 gem 'rename'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
