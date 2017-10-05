@@ -26,7 +26,7 @@ class Page < ApplicationRecord
     html.css('body,head').search(rm_class.join(',')).remove
     # 単純なHTMLの比較では上手く更新を検知出来ないページ対応
     irregular_pages = [
-      { url: 'http://www.tonarinoyj.jp/',   selector: '.series-information' },
+      { url: 'http://www.tonarinoyj.jp/',   selector: '.series-episode-list' },
       { url: 'http://to-ti.in/',            selector: '.episode' },
       { url: 'http://www.comic-essay.com/', selector: '.comic-number' }
     ]
