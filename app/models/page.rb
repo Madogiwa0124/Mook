@@ -28,7 +28,7 @@ class Page < ApplicationRecord
     irregular_pages = [
       { url: 'http://www.tonarinoyj.jp/',   selector: '.series-episode-list' },
       { url: 'http://to-ti.in/',            selector: '.episode' },
-      { url: 'http://www.comic-essay.com/', selector: '.comic-number' }
+      { url: 'http://www.comic-essay.com/', selector: '.story-box' }
     ]
     # 特定の部分のみをhtmlとして保存する
     irregular_pages.each do |page|
