@@ -24,6 +24,9 @@
           <%= link_to '編集', edit_page_path(@page), class: "btn btn-warning" %>
           <%= link_to '削除', @page, method: :delete, class: "btn btn-danger", data: { confirm: "#{@page.name}を削除してよろしいですか？" } %>
         <% end %>
+        <button id="tweetBtn" class="btn btn-success">
+          <%= glyph("retweet") %>
+        </button>
         <%= link_to '戻る', pages_path, class: "btn btn-info" %>
       </div>
       <hr>
@@ -35,3 +38,23 @@
     </div>
   </div>
 </div>
+<script>
+  // Tweet文字列生成メソッド
+  function make_tweet_string(){
+    var tweet_string = "- Moookからお知らせ - \n"
+                      + "タイトル：<%= @page.name %> \n"
+                      + "URL：<%= @page.url %> \n"
+                      + "このページ見てみてヽ(´ｴ`)ﾉ！\n"
+                      + "https://moook.herokuapp.com/ \n"
+                      + "#Moook";
+    return tweet_string;
+  }
+  // Tweetボタンを取得
+  var tweet_btn = document.getElementById("tweetBtn");
+  tweet_btn.addEventListener('click', function(){
+    window.open(
+        "https://twitter.com/intent/tweet?text=" + 
+        encodeURIComponent(make_tweet_string())
+    );
+  });
+</script>
