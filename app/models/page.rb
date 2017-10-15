@@ -52,6 +52,7 @@ class Page < ApplicationRecord
       logger.error e.message
       # HTML取得時にエラーが発生した場合はHTMLを初期化
       html = nil
+      return html
     end
   end
 
