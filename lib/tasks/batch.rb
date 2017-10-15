@@ -10,7 +10,7 @@ class Tasks::Batch
     Page.all.each do |page|
       new_html = page.get_html(page.url)
       # ページに変更あり、かつHTMLの取得に成功した場合
-      unless page.html == new_html && new_html.nil?
+      if page.html != new_html && new_html.present?
         page.html = new_html
         page.save
         # 未読に戻す
