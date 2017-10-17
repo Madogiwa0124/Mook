@@ -1,5 +1,8 @@
 <div id="index" class="container">
   <p class="right">
+    <%= link_to all_read_pages_path, class: "btn btn-info" do %>
+      <%= glyph("eye-open") %> 全てを既読にする
+    <% end %>
     <%= link_to new_page_path, class: "btn btn-success" do %>
       <%= glyph("pushpin") %> 新規投稿
     <% end %>
