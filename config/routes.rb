@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :pages do
     collection do 
       get :search
+      get :all_read
     end
     member do 
       get :read
