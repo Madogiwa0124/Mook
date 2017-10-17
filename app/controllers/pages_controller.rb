@@ -63,6 +63,12 @@ class PagesController < ApplicationController
     redirect_to params[:url]
   end
 
+  def all_read
+    # ログインユーザーの全てのページを既読に更新
+    Favorite.where(user_id: current_user.id).update_all(read: true)
+    redirect_to pages_url
+  end
+
   private
 
     def set_page
