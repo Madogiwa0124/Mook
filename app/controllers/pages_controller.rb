@@ -11,12 +11,19 @@ class PagesController < ApplicationController
     else
       @pages = Page.all.order('updated_at DESC').page(params[:page])
     end
+    respond_to do |format|
+      format.html
+      format.json { render json: @pages }
+    end
   end
 
   def search
     @pages = Page.search(params[:search_text])
     @pages = Kaminari.paginate_array(@pages).page(params[:page])
-    render 'index'
+    respond_to do |format|
+      format.html { render 'index' }
+      format.json { render json: @pages }
+    end
   end
 
   def show
@@ -29,6 +36,10 @@ class PagesController < ApplicationController
     # 最新のものから降順に取得
     @comments = Comment.where(page_id: params[:id]).order("id DESC")
     @comments = @comments.page(params[:page]).per(10)
+    respond_to do |format|
+      format.html
+      format.json { render json: @page }
+    end
   end
 
   def new
