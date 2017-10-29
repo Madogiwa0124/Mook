@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'pages#index'
+  devise_scope :user do
+    root :to => "devise/sessions#new"
+  end
   resources :pages do
     collection do 
       get :search
