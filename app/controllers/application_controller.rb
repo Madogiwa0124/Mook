@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def after_sign_in_path_for(resource)
+    '/pages'
+  end
+
   #deviseのストロングパラメーターにカラム追加するメソッドを定義
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: PERMISSIBLE_ATTRIBUTES)

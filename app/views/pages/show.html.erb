@@ -1,13 +1,15 @@
 <div id="show" class="container">
   <div class="detail-area">
     <h1>
-      <%= render "favorite_form", { page: @page } %>
+      <% if user_signed_in? %>
+        <%= render "favorite_form", { page: @page } %>
+      <% end %>
       <%= @page.name %>
     </h1>
     <div class="content-area">
       <p class="url">URL</p>
       <p class="url">
-        <% if @page.is_favorited?(current_user) %>
+        <% if @page.is_favorited?(@user) %>
           <%= link_to @page.url,  read_page_path(@page, url: @page.url), :target=>["_blank"] %>
         <% else %>
           <%= link_to @page.url, @page.url, :target=>["_blank"] %>
@@ -20,7 +22,7 @@
       </h4>
       <p class="right">更新日時：<%= format_date(@page.updated_at) %></p>
       <div class="btn-area right">
-        <% if @page.user_id == current_user.id %>
+        <% if @page.user_id == @user.id %>
           <%= link_to '編集', edit_page_path(@page), class: "btn btn-warning" %>
           <%= link_to '削除', @page, method: :delete, class: "btn btn-danger", data: { confirm: "#{@page.name}を削除してよろしいですか？" } %>
         <% end %>
@@ -31,8 +33,10 @@
       </div>
       <hr>
       <div class="comments_area">
+      <% if user_signed_in? %>
         <%= render 'comments/form' %>
         <hr>
+      <% end %>
         <%= render 'comments/index' %>
       </div>
     </div>
