@@ -1,10 +1,16 @@
 class PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :read, :all_read]
+  before_action :set_user
 
   def index
-    @pages = Page.favorited_pages(current_user).page(params[:page])
-    @favorites = Favorite.find_by(user_id: current_user.id)
+    # ログイン有無により処理を分岐
+    if !@user.id.nil?
+      @pages = Page.favorited_pages(current_user).page(params[:page])
+      @favorites = Favorite.find_by(user_id: current_user.id)
+    else
+      @pages = Page.all.order('updated_at DESC').page(params[:page])
+    end
   end
 
   def search
@@ -70,6 +76,10 @@ class PagesController < ApplicationController
   end
 
   private
+
+    def set_user
+      @user = current_user || User.new
+    end
 
     def set_page
       @page = Page.find(params[:id])
