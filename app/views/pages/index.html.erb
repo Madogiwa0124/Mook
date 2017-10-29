@@ -1,25 +1,27 @@
 <div id="index" class="container">
-  <p class="right">
-    <%= link_to all_read_pages_path, class: "btn btn-info" do %>
-      <%= glyph("eye-open") %> 全てを既読にする
-    <% end %>
-    <%= link_to new_page_path, class: "btn btn-success" do %>
-      <%= glyph("pushpin") %> 新規投稿
-    <% end %>
-  </p>
+  <% if !@user.id.nil? %>
+    <p class="right">
+      <%= link_to all_read_pages_path, class: "btn btn-info" do %>
+        <%= glyph("eye-open") %> 全てを既読にする
+      <% end %>
+      <%= link_to new_page_path, class: "btn btn-success" do %>
+        <%= glyph("pushpin") %> 新規投稿
+      <% end %>
+    </p>
+  <% end %>
   <% @pages.each do |page| %>
     <div class="col-md-4 col-sm-12 area">
       <div class="page">
         <div class="contents-area">
           <div class="title">
-            <% unless page.is_read?(current_user) %>
+            <% unless page.is_read?(@user) %>
               <span class="read"><%= glyph("exclamation-sign") %></span>
             <% end %>
             <%= page.name %>
           </div>
           <p class="url">
             <p>URL:
-              <% if page.is_favorited?(current_user) %>
+              <% if page.is_favorited?(@user) %>
                 <%= link_to page.url,  read_page_path(page, url: page.url), :target=>["_blank"] %>
               <% else %>
                 <%= link_to page.url, page.url, :target=>["_blank"] %>
@@ -37,7 +39,7 @@
           <%= link_to page, class: "btn btn-info btn-sm" do %>
             <%= glyph("eye-open") %>
           <% end %>
-          <% if page.user_id == current_user.id %>
+          <% if page.user_id == @user.id %>
             <%= link_to edit_page_path(page), class: "btn btn-warning btn-sm" do %>
               <%= glyph("edit") %>
             <% end %>
