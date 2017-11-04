@@ -13,7 +13,15 @@ class PagesController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json { render json: @pages }
+      format.json do
+        # API呼び出し時はタグを付与する
+        ret = @pages.map(&:attributes)
+        ret.each do |page|
+          tags = Page.find(page["id"]).tags.map(&:name)
+          page["tags"] = tags
+        end
+        render json: ret
+      end
     end
   end
 
