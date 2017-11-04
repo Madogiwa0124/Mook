@@ -23,5 +23,13 @@ module Moook
     end
     # メッセージ形式を変更
     config.action_view.field_error_proc = proc { |html_tag, instance| html_tag }
+
+    # Access-Control-Allow-Originを許可
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get]
+      end
+    end
   end
 end

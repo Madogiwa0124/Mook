@@ -18,6 +18,7 @@ gem 'devise'
 gem 'acts-as-taggable-on'
 gem 'rename'
 gem 'kaminari'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
