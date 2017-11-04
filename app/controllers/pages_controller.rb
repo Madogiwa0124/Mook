@@ -18,6 +18,7 @@ class PagesController < ApplicationController
         ret = @pages.map(&:attributes)
         ret.each do |page|
           tags = Page.find(page["id"]).tags.map(&:name)
+          page.delete("html")
           page["tags"] = tags
         end
         render json: ret
