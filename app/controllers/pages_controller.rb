@@ -47,7 +47,7 @@ class PagesController < ApplicationController
     @comments = @comments.page(params[:page]).per(10)
     respond_to do |format|
       format.html
-      format.json { render json: @page }
+      format.json { render json: @comments }
     end
   end
 
