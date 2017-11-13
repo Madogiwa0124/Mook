@@ -15,5 +15,8 @@ Moookのベータ版を公開しました！
 ## 今後実装予定の機能
 `issues`でご確認ください。
 
+## 各種ドキュメント
+* [ER図](https://gist.github.com/Madogiwa0124/70619e332bab32e675cc90d9e3481f59)
+
 ## お問い合わせ
 機能のご要望等は、[@Madogiwa_Boy](https://twitter.com/Madogiwa_Boy)まで、お寄せ下さい(/･ω･)/
