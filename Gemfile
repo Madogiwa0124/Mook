@@ -19,6 +19,8 @@ gem 'acts-as-taggable-on'
 gem 'rename'
 gem 'kaminari'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'rails_admin'
+gem 'cancancan'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

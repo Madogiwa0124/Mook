@@ -51,6 +51,13 @@
                   <%= glyph("user") %> マイページ
                 <% end %>
               </li>
+              <% if current_user.admin %>
+                <li>
+                  <%= link_to rails_admin_path do %>
+                    <%= glyph("wrench") %> 管理
+                  <% end %>
+                </li>
+              <% end %>
               <li>
                 <%= link_to destroy_user_session_path, method: :delete do %>
                   <%= glyph("log-out") %> ログアウト
