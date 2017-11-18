@@ -1,8 +1,10 @@
 ja:
   activerecord:
     models:
-      page: "トピック"
+      page: "ページ"
       user: "ユーザー"
+      comment: "コメント"
+      favorite: "お気に入り"
     attributes:
       page:
         name: "内容"
@@ -16,3 +18,7 @@ ja:
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
         send_mail: "メール通知を受け取る"
+      comment:
+        content: "内容"
+      fovorite:
+        read: "読了済"
