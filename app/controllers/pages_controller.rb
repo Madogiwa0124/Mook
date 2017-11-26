@@ -68,6 +68,7 @@ class PagesController < ApplicationController
     @page.html = @page.get_html(@page.url)
     if @page.save
       redirect_to @page, notice: '新しいページを登録しました。'
+      notice_page_info(@page)
     else
       render :new
     end
@@ -111,5 +112,15 @@ class PagesController < ApplicationController
 
     def page_params
       params.require(:page).permit(:name, :url, :tag_list)
+    end
+
+    def notice_page_info(page)
+      message = <<~"EOS"
+        Moookに新規ページが登録されました！
+        名前：#{page.name}
+        URL:#{page.url}
+      EOS
+
+      notice_slack(message)
     end
 end
