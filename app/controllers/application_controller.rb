@@ -18,4 +18,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: PERMISSIBLE_ATTRIBUTES)
     devise_parameter_sanitizer.permit(:account_update, keys: PERMISSIBLE_ATTRIBUTES)
   end
+
+  # slack通知用メソッド
+  def notice_slack(message)
+    notifier = Slack::Notifier.new(ENV['SLACK_WEBHOOK_URL'])
+    notifier.ping(message)
+  end
+
 end

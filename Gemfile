@@ -21,6 +21,8 @@ gem 'kaminari'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rails_admin'
 gem 'cancancan'
+gem 'slack-notifier'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
