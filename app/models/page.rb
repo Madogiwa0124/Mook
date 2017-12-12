@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Page < ApplicationRecord
   validates :name, presence: true
   validates :url, presence: true, uniqueness: true
@@ -39,11 +41,12 @@ class Page < ApplicationRecord
 
   def get_html(url)
     begin
+      binding.pry
       # HTMLの取得
       html = open(url).read
       # HTMLの整形
       html = html.sub(/\r\n|\r|\n/, '')
-      html = Nokogiri::HTML.parse(html, url);
+      html = Nokogiri::HTML.parse(html, url)
       html = format_html(html)
       # utf-8にエンコードして返却
       return html.to_s.encode('UTF-8')
