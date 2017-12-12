@@ -41,7 +41,6 @@ class Page < ApplicationRecord
 
   def get_html(url)
     begin
-      binding.pry
       # HTMLの取得
       html = open(url).read
       # HTMLの整形
