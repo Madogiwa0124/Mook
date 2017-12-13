@@ -35,15 +35,15 @@
           <% end %>
         </p>
         <p class="update_time right">更新日時：<%= format_date(page.updated_at) %></p>
-        <div class="btn-area center">
-          <%= link_to page, class: "btn" do %>
+        <div class="btn-area right">
+          <%= link_to page, class: "btn btn-info btn-sm" do %>
             <%= glyph("eye-open") %>
           <% end %>
           <% if page.user_id == @user.id %>
-            <%= link_to edit_page_path(page), class: "btn" do %>
+            <%= link_to edit_page_path(page), class: "btn btn-warning btn-sm" do %>
               <%= glyph("edit") %>
             <% end %>
-            <%= link_to page, method: :delete, class: "btn", data: { confirm: "#{page.name}を削除してよろしいですか？" } do %>
+            <%= link_to page, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "#{page.name}を削除してよろしいですか？" } do %>
               <%= glyph("trash") %>
             <% end %>
           <% end %>
