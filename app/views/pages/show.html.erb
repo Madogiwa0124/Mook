@@ -45,11 +45,10 @@
 <script>
   // Tweet文字列生成メソッド
   function make_tweet_string(){
-    var tweet_string = "- Moookからお知らせ - \n"
-                      + "タイトル：<%= @page.name %> \n"
-                      + "URL：<%= @page.url %> \n"
-                      + "このページ見てみてヽ(´ｴ`)ﾉ！\n"
-                      + "https://moook.herokuapp.com/ \n"
+    var tweet_string = " - オススメのページ - \n"
+                      + "タイトル:<%= @page.name %>\n"
+                      + "URL:<%= @page.url %>\n"
+                      + "<%= request.url %>\n"
                       + "#Moook";
     return tweet_string;
   }
