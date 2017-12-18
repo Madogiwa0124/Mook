@@ -8,6 +8,8 @@
   <div class="login-form">
     <h1>ログイン</h1>
     <div class="form-group left">
+      <div style="color:gray">β版のため存在しないメールアドレスでもユーザー作成が出来ますので、ご気軽にお試しください。</div>
+      <br>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <label>メールアドレス</label>
         <%= f.email_field :email, autofocus: true, class: "form-control" %>
