@@ -4,7 +4,7 @@ module ApplicationHelper
     if page
       twitter_card[:url] = page.url
       twitter_card[:title] = 'Moookからオススメページのお知らせ'
-      twitter_card[:description] = "タイトル：#{page.name}"
+      twitter_card[:description] = "タイトル：#{page.name}、タグ：#{page.tag_list.join(',')}"
     else
       twitter_card[:url] = 'https://moook.herokuapp.com/pages'
       twitter_card[:title] = 'Webページ更新管理ツール「Moook」'
