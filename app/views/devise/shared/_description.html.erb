@@ -1,8 +1,10 @@
 <div id="description" class="container">
   <div class="about row">
     <h2><span>Moookで出来ること</span></h2>
-    <h3>Moookはwebページの更新管理ツールです。</h3>
-    <h3>お気に入りのページのいつもの更新をいつでも確認できます。</h3>
+    <div>
+      Moookはwebページの更新管理ツールです。<br>
+      お気に入りのページのいつもの更新をいつでも確認できます。
+    </div>
     <div class="col-md-4">
       <div class="value">
         <h3>ページの更新を通知</h3>
@@ -27,7 +29,7 @@
   </div>
   <div class="ranking row">
     <h2><span>人気のページ TOP3</span></h2>
-    <h3>みんなにお気に入りされているページのランキングです。</h3>
+    <div>みんなにお気に入りされているページのランキングです。</div>
     <% pages = Page.get_popular_pages(3) %>
     <% rank = 1 %>
     <% pages.each do |page| %>
