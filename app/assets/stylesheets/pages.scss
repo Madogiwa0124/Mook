@@ -22,7 +22,7 @@ $title-hilight-color: #d9f4d4;
 
 #new,#edit,#show{
   padding-bottom: 100px;
-  h1{
+  h1,h2{
     border-left: 5px lightgreen solid;
     padding-left: 10px;
     margin-top: 0px;
@@ -35,10 +35,15 @@ $title-hilight-color: #d9f4d4;
         word-wrap: break-word;
       }
     }
-    padding: 25px;
+    padding: 15px;
     border-radius: 10px;
     background-color: $content-bg-color;
-    margin: 20px;
+    margin: 10px;
+  }
+  .tags_area{
+    .tag{
+      line-height: 28px;
+    }
   }
 }
 

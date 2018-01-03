@@ -1,11 +1,11 @@
 <div id="show" class="container">
   <div class="detail-area">
-    <h1>
+    <h2>
       <% if user_signed_in? %>
         <%= render "favorite_form", { page: @page } %>
       <% end %>
       <%= @page.name %>
-    </h1>
+    </h2>
     <div class="content-area">
       <p class="url">URL</p>
       <p class="url">
@@ -17,7 +17,7 @@
       </p>
       <h4 class="tags_area">
         <% @page.tag_list.each do |tag| %>
-          <%= link_to tag, search_pages_path(search_text: tag), class: "label label-large label-primary" %>
+          <%= link_to tag, search_pages_path(search_text: tag), class: "tag label label-large label-primary" %>
         <% end %>
       </h4>
       <p class="right">更新日時：<%= format_date(@page.updated_at) %></p>

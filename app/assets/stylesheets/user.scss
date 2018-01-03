@@ -16,7 +16,7 @@
   }
   .about{
     background-size: cover;
-    background-color: #F1F1F1;
+    background-color: #FAFAFA;
     width: 100vw;
     padding-bottom: 20px;
   }
@@ -28,6 +28,7 @@
     .rank{
       border-left: 1px solid #DDDDDD;
       border-right: 1px solid #DDDDDD;
+      word-wrap: break-word;
     }
   }
   .supplement{
@@ -92,7 +93,7 @@
   }
   margin: 0 auto;
   background-color: #FFFFFF;
-  width: 370px;
+  width: 330px;
   border-radius: 10px;
 }
 
