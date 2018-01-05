@@ -10,43 +10,41 @@
     </p>
   <% end %>
   <% @pages.each do |page| %>
-    <div class="col-md-4 col-sm-12 area">
-      <div class="page">
-        <div class="contents-area">
-          <div class="title">
-            <% unless page.is_read?(@user) %>
-              <span class="read"><%= glyph("exclamation-sign") %></span>
-            <% end %>
-            <%= page.name %>
-          </div>
-          <p class="url">
-            <p>URL:
+    <div class="col-md-4 col-sm-12">
+      <div class="thumbnail">
+        <h3 class="title">
+          <% unless page.is_read?(@user) %>
+            <span class="read"><%= glyph("exclamation-sign") %></span>
+          <% end %>
+          <%= page.name %>
+        </h3>
+        <div class="image-area">
+          <img class="page-image" src="/assets/favicon-9ee50839ee9b60c9ceb8bd7391362a308d11df34a9a994e718b0926586c8bff6.png" />
+          <div class="info">
+            <p class="url right">
               <% if page.is_favorited?(@user) %>
                 <%= link_to page.url,  read_page_path(page, url: page.url), :target=>["_blank"] %>
               <% else %>
                 <%= link_to page.url, page.url, :target=>["_blank"] %>
               <% end %>
             </p>
-          </p>
+            <p class="update_time right">更新日時：<%= format_date(page.updated_at) %></p>
+          </div>
         </div>
-        <p class="tags_area">
-          <% page.tag_list[0..2].each do |tag| %>
-            <%= link_to tag, search_pages_path(search_text: tag), class: "label label-primary xs" %>
-          <% end %>
-        </p>
-        <p class="update_time right">更新日時：<%= format_date(page.updated_at) %></p>
-        <div class="btn-area right">
-          <%= link_to page, class: "btn btn-info btn-sm" do %>
-            <%= glyph("eye-open") %>
-          <% end %>
-          <% if page.user_id == @user.id %>
-            <%= link_to edit_page_path(page), class: "btn btn-warning btn-sm" do %>
-              <%= glyph("edit") %>
+        <div class="caption">
+          <div class="btn-area right">
+            <%= link_to page, class: "btn" do %>
+              <%= glyph("eye-open") %>Show
             <% end %>
-            <%= link_to page, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "#{page.name}を削除してよろしいですか？" } do %>
-              <%= glyph("trash") %>
+            <% if page.user_id == @user.id %>
+              <%= link_to edit_page_path(page), class: "btn" do %>
+                <%= glyph("edit") %>Edit
+              <% end %>
+              <%= link_to page, method: :delete, class: "btn", data: { confirm: "#{page.name}を削除してよろしいですか？" } do %>
+                <%= glyph("trash") %>Destory
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
