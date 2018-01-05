@@ -58,12 +58,14 @@ $title-hilight-color: #d9f4d4;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      border-bottom: 1px #F5F5F5 solid;
     }
     .image-area{
       position: relative;
       .page-image{
         object-fit: cover;
         max-width: 100%;
+        min-width: 100%;
       }
       .info{
         padding: 5px;

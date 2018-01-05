@@ -12,6 +12,7 @@ class Tasks::Batch
       # ページに変更あり、かつHTMLの取得に成功した場合
       if page.html != new_html && new_html.present?
         page.html = new_html
+        page.image_src = page.get_page_image
         page.save
         # 未読に戻す
         favorites = Favorite.where(page_id: page.id)

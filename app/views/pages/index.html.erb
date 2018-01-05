@@ -19,7 +19,7 @@
           <%= page.name %>
         </h3>
         <div class="image-area">
-          <img class="page-image" src="/assets/favicon-9ee50839ee9b60c9ceb8bd7391362a308d11df34a9a994e718b0926586c8bff6.png" />
+          <img class="page-image" src=<%= set_page_img(page.image_src) %> />
           <div class="info">
             <p class="url right">
               <% if page.is_favorited?(@user) %>
