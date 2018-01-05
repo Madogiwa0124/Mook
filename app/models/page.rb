@@ -58,6 +58,17 @@ class Page < ApplicationRecord
     end
   end
 
+  def get_page_image
+    html = Nokogiri::HTML.parse(self.html)
+    # ページのfaviconのイメージを設定する
+    favicon_element = html.xpath('//link[@rel="shortcut icon"]')
+    if favicon_element.present?
+      favicon_element.attribute('href').to_s
+    else
+      nil
+    end
+  end
+
   # ログインユーザーがお気に入り済かどうかをチェック
   def is_favorited?(user)
     Favorite.exists?(page_id: self.id, user_id: user.id)
