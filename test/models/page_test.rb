@@ -89,7 +89,7 @@ class PageTest < ActiveSupport::TestCase
   end
 
   test "お気に入り登録済のページが返却されること" do
-    user = users(:one)
+    user = users(:two)
     assert_equal Page.favorited_pages(user).count, 2
   end
 
