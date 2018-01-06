@@ -1,6 +1,10 @@
 $title-bg-color: #a2e098;
 $title-hilight-color: #d9f4d4;
 
+html{
+  font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI","Noto Sans Japanese","ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;
+}
+
 .navbar.navbar-default{
   margin-bottom: 0px;
 }
@@ -34,6 +38,10 @@ header{
     background-color: $title-bg-color;
     color: #FFFFFF;
   }
+}
+
+body{
+  padding-bottom: 80px;
 }
 
 footer{ 
