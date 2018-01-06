@@ -20,22 +20,4 @@ module PagesHelper
     end
     content
   end
-
-  def set_page_img(image_src)
-    if image_src_check(image_src)
-      image_src
-    else
-      asset_path('no_image.png')
-    end
-  end
-
-  private
-
-  def image_src_check(image_src)
-    if image_src
-      !!image_src.match(/(http|https).*(JPG|jpg|jpeg|gif|png|svg)/)
-    else
-      false
-    end
-  end
 end
