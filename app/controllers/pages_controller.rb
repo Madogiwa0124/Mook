@@ -44,7 +44,7 @@ class PagesController < ApplicationController
     end
     # 最新のものから降順に取得
     @comments = Comment.where(page_id: params[:id]).order("id DESC")
-    @comments = @comments.page(params[:page]).per(10)
+    @comments = @comments.page(params[:page]).per(5)
     respond_to do |format|
       format.html
       format.json do 

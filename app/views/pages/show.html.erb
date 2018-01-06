@@ -1,44 +1,63 @@
 <div id="show" class="container">
-  <div class="detail-area">
+  <div class="detail-area col-md-7 col-sm-12">
     <h2>
-      <% if user_signed_in? %>
-        <%= render "favorite_form", { page: @page } %>
-      <% end %>
       <%= @page.name %>
     </h2>
-    <div class="content-area">
-      <p class="url">URL</p>
-      <p class="url">
-        <% if @page.is_favorited?(@user) %>
-          <%= link_to @page.url,  read_page_path(@page, url: @page.url), :target=>["_blank"] %>
-        <% else %>
-          <%= link_to @page.url, @page.url, :target=>["_blank"] %>
+    <div class="image-area">
+      <div class="info">
+        <% if user_signed_in? %>
+          <%= render "favorite_form", { page: @page } %>
         <% end %>
+      </div>
+      <img class="page-image" src=<%= set_page_img(@page.image_src) %> >
+    </div>
+    <div class="content-area">
+      <p class="update_date">
+        <h4>更新日時</h4>
+        <%= format_date(@page.updated_at) %>
+      </p>
+      <p>
+        <h4>URL</h4>
+        <p class="url">
+          <% if @page.is_favorited?(@user) %>
+            <%= link_to @page.url,  read_page_path(@page, url: @page.url), :target=>["_blank"] %>
+          <% else %>
+            <%= link_to @page.url, @page.url, :target=>["_blank"] %>
+          <% end %>
+        </p>
       </p>
       <h4 class="tags_area">
+        <p>タグリスト</p>
         <% @page.tag_list.each do |tag| %>
           <%= link_to tag, search_pages_path(search_text: tag), class: "tag label label-large label-primary" %>
         <% end %>
       </h4>
-      <p class="right">更新日時：<%= format_date(@page.updated_at) %></p>
-      <div class="btn-area right">
-        <% if @page.user_id == @user.id %>
-          <%= link_to '編集', edit_page_path(@page), class: "btn btn-warning" %>
-          <%= link_to '削除', @page, method: :delete, class: "btn btn-danger", data: { confirm: "#{@page.name}を削除してよろしいですか？" } %>
-        <% end %>
-        <button id="tweetBtn" class="btn btn-success">
-          <%= glyph("retweet") %>
-        </button>
-        <%= link_to '戻る', pages_path, class: "btn btn-info" %>
-      </div>
       <hr>
-      <div class="comments_area">
+      <div class="btn-area right">
+            <% if @page.user_id == @user.id %>
+              <%= link_to edit_page_path(@page), class: "btn" do %>
+                <%= glyph("edit") %>Edit
+              <% end %>
+              <%= link_to @page, method: :delete, class: "btn", data: { confirm: "#{@page.name}を削除してよろしいですか？" } do %>
+                <%= glyph("trash") %>Destory
+              <% end %>
+            <% end %>
+        <button id="tweetBtn" class="btn">
+          <%= glyph("retweet") %>Retweet
+        </button>
+        <%= link_to pages_path, class: "btn" do %>
+          <%= glyph("arrow-left") %>Back
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5 col-sm-12">
+    <div class="comments_area">
       <% if user_signed_in? %>
         <%= render 'comments/form' %>
         <hr>
       <% end %>
         <%= render 'comments/index' %>
-      </div>
     </div>
   </div>
 </div>

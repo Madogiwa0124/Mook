@@ -10,11 +10,9 @@ $title-hilight-color: #d9f4d4;
 }
 
 .favorite_btn{
-  padding: 0px;
   color: #DDDDDD;
-  font-weight: bold;
+  background-color: transparent;
   border: none;
-  background-color: rgba(255,255,255,1);
 }
 .favorited{
   color: yellow;
@@ -23,7 +21,6 @@ $title-hilight-color: #d9f4d4;
 #new,#edit,#show{
   padding-bottom: 100px;
   h1,h2{
-    border-left: 5px lightgreen solid;
     padding-left: 10px;
     margin-top: 0px;
     margin-bottom: 15px;
@@ -31,22 +28,63 @@ $title-hilight-color: #d9f4d4;
   .input-form,.detail-area{
     .content-area{
       .url{
-        font-size: 20px;
         word-wrap: break-word;
       }
     }
     padding: 15px;
     border-radius: 10px;
     background-color: $content-bg-color;
-    margin: 10px;
+    margin: 10px 0px;
   }
   .tags_area{
     .tag{
       line-height: 28px;
     }
   }
+  .url{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .image-area{
+    border: #EEEEEE 1px solid;
+    position: relative;
+    .page-image{
+      object-fit: cover;
+      max-width: 100%;
+      min-width: 100%;
+    }
+    .info{
+      font-size: 30px;
+      padding: 5px;
+      position: absolute;
+      text-align: right;
+      top: 0;
+      width: 100%;
+    }
+  }
+  .btn-area{
+    text-align: center;
+    color: #AAAAAA;
+    button{
+      background-color: transparent;
+    }
+    button:hover { color: #AAFFAA; }     
+    a:link { color: #AAAAAA; }
+    a:visited { color: #AAAAAA; }
+    a:hover { color: #AAFFAA; }
+    a:active { color: #AAFFAA; }
+  }
+  .comments_area{
+    padding: 10px;
+    h3{
+      margin-top: 0px;
+    }
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+  }
 }
-
 #index{
   padding: 5px;
   .thumbnail{
@@ -84,9 +122,6 @@ $title-hilight-color: #d9f4d4;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-        }
-        .update_time{
-
         }
       }
     }
