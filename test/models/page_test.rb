@@ -10,6 +10,7 @@ class PageTest < ActiveSupport::TestCase
     page.name = "hoge"
     page.url = "https://www.google.co.jp/"
     page.html = page.get_html(page.url)
+    page.page_update_date = DateTime.now
     page.image_src = page.get_page_image
     page.user_id = users(:one).id
     assert page.save
