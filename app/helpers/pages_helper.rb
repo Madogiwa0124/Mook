@@ -33,7 +33,7 @@ module PagesHelper
 
   def image_src_check(image_src)
     if image_src
-      !!image_src.match(/(http|https).*(jpg|jpeg|gif|png|svg)/)
+      !!image_src.match(/(http|https).*(JPG|jpg|jpeg|gif|png|svg)/)
     else
       false
     end
