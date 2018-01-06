@@ -112,7 +112,7 @@ class PagesController < ApplicationController
     end
 
     def page_params
-      params.require(:page).permit(:name, :url, :tag_list)
+      params.require(:page).permit(:name, :url, :tag_list, :image_src)
     end
 
     def notice_page_info(page)

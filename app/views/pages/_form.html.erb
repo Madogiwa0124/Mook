@@ -11,8 +11,10 @@
   <div class="form-group">
     <%= f.label :name, "ページ名" %>
     <%= f.text_field :name, class: "form-control" %>
-    <%= f.label :url, "URL" %>
+    <%= f.label :url, "ページURL" %>
     <%= f.text_field :url, class: "form-control" %>
+    <%= f.label :image_src, "サムネイルURL" %>
+    <%= f.text_field :image_src, class: "form-control" %>
     <%= f.label :tag_list, "タグ(カンマ区切り)" %><br>
     <%= text_field_tag 'page[tag_list]', @page.tag_list.join(','), class: "form-control" %>
     <br>
