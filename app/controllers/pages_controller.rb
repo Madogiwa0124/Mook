@@ -66,7 +66,6 @@ class PagesController < ApplicationController
     @page = Page.new(page_params)
     @page.user_id = current_user.id
     @page.html = @page.get_html(@page.url)
-    @page.image_src = @page.get_page_image
     @page.page_update_date = DateTime.now
     if @page.save
       redirect_to @page, notice: '新しいページを登録しました。'
