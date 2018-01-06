@@ -29,6 +29,12 @@
               <% end %>
             </p>
             <p class="update_time right">更新日時：<%= format_date(page.updated_at) %></p>
+            <p class="tags right">
+              &nbsp;
+              <% if page.tag_list.present? %>
+                タグ：<%= page.tag_list[0..2].join(', ') %>
+              <% end %>
+            </p>
           </div>
         </div>
         <div class="caption">
