@@ -140,6 +140,11 @@ $title-hilight-color: #d9f4d4;
       a:hover { color: #AAFFAA; }
       a:active { color: #AAFFAA; }
     }
+    .tags{
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;      
+    }
   } 
 }
 
