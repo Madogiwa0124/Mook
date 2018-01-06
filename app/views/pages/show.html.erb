@@ -53,11 +53,16 @@
   </div>
   <div class="col-md-5 col-sm-12" style="margin: 0px; padding: 0px;">
     <div class="comments_area">
+      <h3>コメント</h3>
       <% if user_signed_in? %>
         <%= render 'comments/form' %>
         <hr>
       <% end %>
+      <% if @comments.present? %>
         <%= render 'comments/index' %>
+      <% else %>
+        <p>コメントはありません</p>
+      <% end %>
     </div>
   </div>
 </div>
