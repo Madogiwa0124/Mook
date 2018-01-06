@@ -14,6 +14,7 @@ class Tasks::Batch
         page.html = new_html
         # TODO:サムネイル取得処理は一旦見送り画面から登録する運用で
         # page.image_src = page.get_page_image
+        page.page_update_date = DateTime.now
         page.save
         # 未読に戻す
         favorites = Favorite.where(page_id: page.id)

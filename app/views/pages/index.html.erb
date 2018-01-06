@@ -28,7 +28,7 @@
                 <%= link_to page.url, page.url, :target=>["_blank"] %>
               <% end %>
             </p>
-            <p class="update_time right">更新日時：<%= format_date(page.updated_at) %></p>
+            <p class="update_time right">更新日時：<%= format_date(page.page_update_date) %></p>
             <p class="tags right">
               &nbsp;
               <% if page.tag_list.present? %>

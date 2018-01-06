@@ -16,7 +16,7 @@ class Page < ApplicationRecord
                           " OR "+ 
                           "url like '%#{ key }%'")
     result2 = Page.tagged_with(key)
-    (result1 + result2).uniq.sort_by{ |v| v['updated_at'] }.reverse
+    (result1 + result2).uniq.sort_by{ |v| v['page_update_date'] }.reverse
   end
 
   def format_html(html)
@@ -77,7 +77,7 @@ class Page < ApplicationRecord
   # ログインユーザーがお気に入り済のページ一覧を返却
   def self.favorited_pages(user)
     page_ids = Favorite.where(user_id: user.id).map{ |f| f.page_id }
-    Page.where(id: page_ids).order("updated_at DESC")
+    Page.where(id: page_ids).order("page_update_date DESC")
   end
 
   # 該当ページが既読済かどうかチェック

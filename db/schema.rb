@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180105114621) do
+ActiveRecord::Schema.define(version: 20180106104024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20180105114621) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.string "image_src"
+    t.datetime "page_update_date"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
