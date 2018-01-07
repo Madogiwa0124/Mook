@@ -11,28 +11,12 @@ class PagesController < ApplicationController
     else
       @pages = Page.all.order('updated_at DESC').page(params[:page])
     end
-    respond_to do |format|
-      format.html
-      format.json do
-        # API呼び出し時はタグを付与する
-        ret = @pages.map(&:attributes)
-        ret.each do |page|
-          tags = Page.find(page['id']).tags.map(&:name)
-          page.delete('html')
-          page['tags'] = tags
-        end
-        render json: ret
-      end
-    end
   end
 
   def search
     @pages = Page.search(params[:search_text])
     @pages = Kaminari.paginate_array(@pages).page(params[:page])
-    respond_to do |format|
-      format.html { render 'index' }
-      format.json { render json: @pages }
-    end
+    render :index
   end
 
   def show
@@ -45,14 +29,6 @@ class PagesController < ApplicationController
     # 最新のものから降順に取得
     @comments = Comment.where(page_id: params[:id]).order('id DESC')
     @comments = @comments.page(params[:page]).per(5)
-    respond_to do |format|
-      format.html
-      format.json do
-        ret = @comments.map(&:attributes)
-        ret = ret.map { |c| c['content'] }
-        render json: ret
-      end
-    end
   end
 
   def new
