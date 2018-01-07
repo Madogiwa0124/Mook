@@ -1,0 +1,2 @@
+class IrregularPage < ApplicationRecord
+end

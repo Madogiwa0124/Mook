@@ -21,21 +21,14 @@ class Page < ApplicationRecord
 
   def format_html(html)
     # HTMLからstyle、scriptタグを削除
-    rm_tag = %w[script style image code]
-    html.css('body,head').search(rm_tag.join(',')).remove
+    rm = { tag: %w[script style image code], class: %w[.tdftpr .tdftlink] }
+    html.css('body,head').search(rm[:tag].join(',')).remove
     # 不要なクラスを持つ要素を削除
-    rm_class = %w[.tdftpr .tdftlink]
-    html.css('body,head').search(rm_class.join(',')).remove
+    html.css('body,head').search(rm[:class].join(',')).remove
     # 単純なHTMLの比較では上手く更新を検知出来ないページ対応
-    irregular_pages = [
-      { url: 'https://tonarinoyj.jp/',   selector: '.js-episode-list' },
-      { url: 'http://to-ti.in/',            selector: '.episode' },
-      { url: 'http://www.comic-essay.com/', selector: '.story-box' },
-      { url: 'https://shonenjumpplus.com',  selector: '.js-episode-list' }
-    ]
-    # 特定の部分のみをhtmlとして保存する
-    irregular_pages.each do |page|
-      html = html.css(page[:selector]) if url.include?(page[:url])
+    IrregularPage.all.each do |page|
+      # 特定の部分のみをhtmlとして保存する
+      html = html.css(page.selector) if url.include?(page.url)
     end
     html
   end
