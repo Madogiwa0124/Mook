@@ -68,7 +68,7 @@ class PagesController < ApplicationController
     @page.html = @page.get_html(@page.url)
     @page.page_update_date = DateTime.now
     if @page.save
-      redirect_to @page, notice: '新しいページを登録しました。'
+      redirect_to @page, notice: notice_messages(:create)
       notice_page_info(@page)
     else
       render :new
@@ -77,7 +77,7 @@ class PagesController < ApplicationController
 
   def update
     if @page.update(page_params)
-      redirect_to @page, notice: 'ページの情報を更新しました。' 
+      redirect_to @page, notice: notice_messages(:update)
     else
       render :edit
     end
@@ -85,7 +85,7 @@ class PagesController < ApplicationController
 
   def destroy
     @page.destroy
-    redirect_to pages_url, notice: 'ページを削除しました。'
+    redirect_to pages_url, notice: notice_messages(:destroy)
   end
 
   def read
@@ -123,5 +123,13 @@ class PagesController < ApplicationController
       EOS
 
       notice_slack(message)
+    end
+
+    def notice_messages(action)
+      case action
+      when :create  then '新しいページを登録しました。'
+      when :update  then 'ページの情報を更新しました。' 
+      when :destroy then 'ページを削除しました。'
+      end
     end
 end
