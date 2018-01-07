@@ -17,9 +17,9 @@ class PagesController < ApplicationController
         # API呼び出し時はタグを付与する
         ret = @pages.map(&:attributes)
         ret.each do |page|
-          tags = Page.find(page["id"]).tags.map(&:name)
-          page.delete("html")
-          page["tags"] = tags
+          tags = Page.find(page['id']).tags.map(&:name)
+          page.delete('html')
+          page['tags'] = tags
         end
         render json: ret
       end
@@ -43,13 +43,13 @@ class PagesController < ApplicationController
       @comment = Comment.find(params[:comment_id])
     end
     # 最新のものから降順に取得
-    @comments = Comment.where(page_id: params[:id]).order("id DESC")
+    @comments = Comment.where(page_id: params[:id]).order('id DESC')
     @comments = @comments.page(params[:page]).per(5)
     respond_to do |format|
       format.html
-      format.json do 
+      format.json do
         ret = @comments.map(&:attributes)
-        ret = ret.map{ |c| c["content"] }
+        ret = ret.map { |c| c['content'] }
         render json: ret
       end
     end
@@ -103,33 +103,33 @@ class PagesController < ApplicationController
 
   private
 
-    def set_user
-      @user = current_user || User.new
-    end
+  def set_user
+    @user = current_user || User.new
+  end
 
-    def set_page
-      @page = Page.find(params[:id])
-    end
+  def set_page
+    @page = Page.find(params[:id])
+  end
 
-    def page_params
-      params.require(:page).permit(:name, :url, :tag_list, :image_src)
-    end
+  def page_params
+    params.require(:page).permit(:name, :url, :tag_list, :image_src)
+  end
 
-    def notice_page_info(page)
-      message = <<~"EOS"
-        Moookに新規ページが登録されました！
-        名前：#{page.name}
-        URL:#{page.url}
-      EOS
+  def notice_page_info(page)
+    message = <<~"EOS"
+      Moookに新規ページが登録されました！
+      名前：#{page.name}
+      URL:#{page.url}
+    EOS
 
-      notice_slack(message)
-    end
+    notice_slack(message)
+  end
 
-    def notice_messages(action)
-      case action
-      when :create  then '新しいページを登録しました。'
-      when :update  then 'ページの情報を更新しました。' 
-      when :destroy then 'ページを削除しました。'
-      end
+  def notice_messages(action)
+    case action
+    when :create  then '新しいページを登録しました。'
+    when :update  then 'ページの情報を更新しました。'
+    when :destroy then 'ページを削除しました。'
     end
+  end
 end
