@@ -5,6 +5,7 @@ ja:
       user: "ユーザー"
       comment: "コメント"
       favorite: "お気に入り"
+      irregular_page: "例外ページ"
     attributes:
       page:
         name: "内容"

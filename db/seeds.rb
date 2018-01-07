@@ -1,7 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# ====================================
+# セレクタを指定するサイトの情報を登録
+# ====================================
+irregular_page_data = [
+  { url: 'https://tonarinoyj.jp/',      selector: '.js-episode-list' },
+  { url: 'http://to-ti.in/',            selector: '.episode' },
+  { url: 'http://www.comic-essay.com/', selector: '.story-box' },
+  { url: 'https://shonenjumpplus.com',  selector: '.js-episode-list' }
+]
+
+irregular_page_data.each do |data|
+  irregular_page = IrregularPage.new(data)
+  irregular_page.save
+end
