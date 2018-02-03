@@ -8,6 +8,7 @@ class Tasks::Batch
   def self.exec_html_change_batch
     updated = []
     Page.all.each do |page|
+      sleep(1) # ロボット判定対策にHTML取得前に1秒待つ
       new_html = page.get_html(page.url)
       # ページに変更あり、かつHTMLの取得に成功した場合
       if page.html != new_html && new_html.present?
