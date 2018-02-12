@@ -12,6 +12,7 @@ class Tasks::Batch
       new_html = page.get_html(page.url)
       # ページに変更あり、かつHTMLの取得に成功した場合
       if page.html != new_html && new_html.present?
+        page.before_html = page.html
         page.html = new_html
         # TODO:サムネイル取得処理は一旦見送り画面から登録する運用で
         # page.image_src = page.get_page_image
