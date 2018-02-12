@@ -21,7 +21,7 @@ class Page < ApplicationRecord
 
   def format_html(html)
     # HTMLからstyle、scriptタグを削除
-    rm = { tag: %w[script style image code], class: %w[.tdftpr .tdftlink] }
+    rm = { tag: %w[link script style image code], class: %w[.tdftpr .tdftad .tdftlink] }
     html.css('body,head').search(rm[:tag].join(',')).remove
     # 不要なクラスを持つ要素を削除
     html.css('body,head').search(rm[:class].join(',')).remove
