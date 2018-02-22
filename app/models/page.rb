@@ -38,7 +38,7 @@ class Page < ApplicationRecord
       # HTMLの取得
       html = open(url).read
       # HTMLの整形
-      html = html.sub(/\r\n|\r|\n/, '')
+      html = html.gsub(/\r\n|\r|\n/, '')
       html = Nokogiri::HTML.parse(html, url)
       html = format_html(html)
       # utf-8にエンコードして返却
