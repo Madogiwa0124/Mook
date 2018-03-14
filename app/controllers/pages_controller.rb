@@ -16,8 +16,7 @@ class PagesController < ApplicationController
 
   def search
     @pages = Page.search(params[:search_text])
-    @pages = Kaminari.paginate_array(@pages).page(params[:page])
-    @pages.includes(:favorite)
+    @pages = Kaminari.paginate_array(@pages).page(params[:page])    
     render :index
   end
 
