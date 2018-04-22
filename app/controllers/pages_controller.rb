@@ -30,6 +30,7 @@ class PagesController < ApplicationController
     # 最新のものから降順に取得
     @comments = Comment.where(page_id: params[:id]).order('id DESC')
     @comments = @comments.page(params[:page]).per(5)
+    increment_page_view
   end
 
   def new
@@ -108,5 +109,11 @@ class PagesController < ApplicationController
     when :update  then 'ページの情報を更新しました。'
     when :destroy then 'ページを削除しました。'
     end
+  end
+
+  def increment_page_view
+    @page_view = PageView.find_or_initialize_by(page_id: @page.id)
+    @page_view.page_view_count += 1
+    @page_view.save
   end
 end

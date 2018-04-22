@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180212122754) do
+ActiveRecord::Schema.define(version: 20180422044502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20180212122754) do
     t.string "selector"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "page_views", force: :cascade do |t|
+    t.bigint "page_id"
+    t.integer "page_view_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_id"], name: "index_page_views_on_page_id"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -98,4 +106,5 @@ ActiveRecord::Schema.define(version: 20180212122754) do
 
   add_foreign_key "favorites", "pages"
   add_foreign_key "favorites", "users"
+  add_foreign_key "page_views", "pages"
 end
