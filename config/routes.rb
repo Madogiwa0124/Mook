@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   resources :pages do
     collection do 
       get :search
-      get :all_read
+      patch :all_read
     end
     member do 
-      get :read
+      patch :read
       resources :comments, only: [:create, :edit, :update, :destroy]
     end
   end
