@@ -30,7 +30,7 @@ class PagesController < ApplicationController
     # 最新のものから降順に取得
     @comments = Comment.where(page_id: params[:id]).order('id DESC')
     @comments = @comments.page(params[:page]).per(5)
-    increment_page_view
+    increment_page_view(@page.id)
   end
 
   def new
@@ -70,7 +70,7 @@ class PagesController < ApplicationController
     favorite = Favorite.find_by(page_id: params[:id], user_id: current_user.id)
     favorite.read = true
     favorite.save
-    increment_page_view
+    increment_page_view(favorite.page_id)
     redirect_to params[:url]
   end
 
@@ -112,9 +112,9 @@ class PagesController < ApplicationController
     end
   end
 
-  def increment_page_view
-    @page_view = PageView.find_or_initialize_by(page_id: @page.id)
-    @page_view.page_view_count += 1
-    @page_view.save
+  def increment_page_view(page_id)
+    page_view = PageView.find_or_initialize_by(page_id: page_id)
+    page_view.page_view_count += 1
+    page_view.save
   end
 end
