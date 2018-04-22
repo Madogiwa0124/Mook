@@ -65,7 +65,7 @@ class Page < ApplicationRecord
 
   # ログインユーザーがお気に入り済かどうかをチェック
   def is_favorited?(user)
-    Favorite.exists?(page_id: self.id, user_id: user.id)
+    favorite.pluck(:user_id).include?(user.id)
   end
 
   # ログインユーザーがお気に入り済のページ一覧を返却
@@ -76,9 +76,9 @@ class Page < ApplicationRecord
 
   # 該当ページが既読済かどうかチェック
   def is_read?(user)
-    favorite = Favorite.find_by(user_id: user.id, page_id: self.id)
+    target = favorite.to_a.select{ |f| f.user_id == user.id }.first
     # お気に入りに未登録のページは既読として扱う
-    favorite.present? ? favorite.read : true
+    target.present? ? target.read : true
   end
 
   # お気入り登録件数の降順で指定された件数分、ページを取得する。
