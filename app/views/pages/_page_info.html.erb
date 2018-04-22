@@ -1,0 +1,44 @@
+<div class="col-md-4 col-sm-12">
+  <div class="thumbnail">
+    <h3 class="title">
+      <% unless page.is_read?(@user) %>
+        <span class="read"><%= glyph("exclamation-sign") %></span>
+      <% end %>
+      <%= page.name %>
+    </h3>
+    <div class="image-area">
+      <img class="page-image" src=<%= set_page_img(page.image_src) %> />
+      <div class="info">
+        <p class="url right">
+          <% if page.is_favorited?(@user) %>
+            <%= link_to page.url,  read_page_path(page, url: page.url), target: ["_blank"], method: :patch %>
+          <% else %>
+            <%= link_to page.url, page.url, :target=>["_blank"] %>
+          <% end %>
+        </p>
+        <p class="update_time right">更新日時：<%= format_date(page.page_update_date) %></p>
+        <p class="tags right">
+          &nbsp;
+          <% if page.tags.present? %>
+            タグ：<%= page.tags.pluck(:name)[0..2].join(', ') %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+    <div class="caption">
+      <div class="btn-area right">
+        <%= link_to page, class: "btn" do %>
+          <%= glyph("eye-open") %>Show
+        <% end %>
+        <% if page.user_id == @user.id %>
+          <%= link_to edit_page_path(page), class: "btn" do %>
+            <%= glyph("edit") %>Edit
+          <% end %>
+          <%= link_to page, method: :delete, class: "btn", data: { confirm: "#{page.name}を削除してよろしいですか？" } do %>
+            <%= glyph("trash") %>Destory
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
