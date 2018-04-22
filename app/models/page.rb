@@ -6,6 +6,7 @@ class Page < ApplicationRecord
   validates :html, presence: true
   has_many :favorite, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_one  :page_view, dependent: :destroy
   belongs_to :user
   acts_as_taggable
 
