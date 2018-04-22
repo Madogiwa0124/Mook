@@ -6,16 +6,19 @@ class PagesController < ApplicationController
   def index
     # ログイン有無により処理を分岐
     if !@user.id.nil?
-      @pages = Page.favorited_pages(current_user).page(params[:page])
-      @pages.includes(:user)
-      @pages.includes(:favorite)
+      @pages = Page.favorited_pages(current_user)
+                   .includes(:user).includes(:favorite)
+                   .includes(:tags)
+                   .page(params[:page])
+                                           
     else
       @pages = Page.all.order('updated_at DESC').page(params[:page])
     end
   end
 
   def search
-    @pages = Page.search(params[:search_text])
+    @pages = Page.includes(:user).includes(:favorite).includes(:tags)
+                 .search(params[:search_text])
     @pages = Kaminari.paginate_array(@pages).page(params[:page])    
     render :index
   end
