@@ -72,7 +72,7 @@
     var tweet_string = " - オススメのページ - \n"
                       + "タイトル:<%= @page.name %>\n"
                       + "<%= request.url %>\n"
-                      + "#Moook "+<%= @page.title %>;
+                      + "#Moook #<%= @page.name %>";
     return tweet_string;
   }
   // Tweetボタンを取得
