@@ -1,7 +1,7 @@
 <div id="index" class="container">
   <% if !@user.id.nil? %>
     <p class="right">
-      <%= link_to all_read_pages_path, class: "btn btn-info" do %>
+      <%= link_to all_read_pages_path, class: "btn btn-info", method: :patch do %>
         <%= glyph("eye-open") %> 全てを既読にする
       <% end %>
       <%= link_to new_page_path, class: "btn btn-success" do %>
@@ -23,7 +23,7 @@
           <div class="info">
             <p class="url right">
               <% if page.is_favorited?(@user) %>
-                <%= link_to page.url,  read_page_path(page, url: page.url), :target=>["_blank"] %>
+                <%= link_to page.url,  read_page_path(page, url: page.url), target: ["_blank"], method: :patch %>
               <% else %>
                 <%= link_to page.url, page.url, :target=>["_blank"] %>
               <% end %>

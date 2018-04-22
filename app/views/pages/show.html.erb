@@ -20,7 +20,7 @@
         <h4>URL</h4>
         <p class="url">
           <% if @page.is_favorited?(@user) %>
-            <%= link_to @page.url,  read_page_path(@page, url: @page.url), :target=>["_blank"] %>
+            <%= link_to @page.url,  read_page_path(@page, url: @page.url), target: ["_blank"], method: :patch  %>
           <% else %>
             <%= link_to @page.url, @page.url, :target=>["_blank"] %>
           <% end %>
