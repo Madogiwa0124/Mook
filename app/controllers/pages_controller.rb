@@ -7,12 +7,12 @@ class PagesController < ApplicationController
     # ログイン有無により処理を分岐
     if !@user.id.nil?
       @pages = Page.favorited_pages(current_user)
-                   .includes(:user).includes(:favorite)
-                   .includes(:tags)
+                   .includes(:user).eager_load(:favorite).includes(:tags)
                    .page(params[:page])
                                            
     else
-      @pages = Page.all.order('updated_at DESC').page(params[:page])
+      @pages = Page.all.includes(:user).includes(:favorite).includes(:tags)
+                   .order('updated_at DESC').page(params[:page])
     end
   end
 
