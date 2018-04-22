@@ -70,6 +70,7 @@ class PagesController < ApplicationController
     favorite = Favorite.find_by(page_id: params[:id], user_id: current_user.id)
     favorite.read = true
     favorite.save
+    increment_page_view
     redirect_to params[:url]
   end
 
