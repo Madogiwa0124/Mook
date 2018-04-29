@@ -8,8 +8,7 @@ class PagesController < ApplicationController
     if !@user.id.nil?
       @pages = Page.favorited_pages(current_user)
                    .includes(:user).eager_load(:favorite).includes(:tags)
-                   .page(params[:page])
-                                           
+                   .page(params[:page])                                           
     else
       @pages = Page.all.includes(:user).includes(:favorite).includes(:tags)
                    .order('updated_at DESC').page(params[:page])
@@ -31,8 +30,9 @@ class PagesController < ApplicationController
       @comment = Comment.find(params[:comment_id])
     end
     # 最新のものから降順に取得
-    @comments = Comment.where(page_id: params[:id]).order('id DESC')
-    @comments = @comments.page(params[:page]).per(5)
+    @comments = Comment.where(page_id: params[:id])
+                       .order('id DESC')
+                       .page(params[:page]).per(5)
     increment_page_view(@page.id)
   end
 
@@ -44,10 +44,7 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = Page.new(page_params)
-    @page.user_id = current_user.id
-    @page.html = @page.get_html(@page.url)
-    @page.page_update_date = DateTime.now
+    prepare_page_create
     if @page.save
       redirect_to @page, notice: notice_messages(:create)
       notice_page_info(@page)
@@ -71,8 +68,7 @@ class PagesController < ApplicationController
 
   def read
     favorite = Favorite.find_by(page_id: params[:id], user_id: current_user.id)
-    favorite.read = true
-    favorite.save
+    favorite.update(read: true)
     increment_page_view(favorite.page_id)
     redirect_to params[:url]
   end
@@ -84,6 +80,13 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def prepare_page_create
+    @page = Page.new(page_params)
+    @page.user_id = current_user.id
+    @page.html = @page.get_html(@page.url)
+    @page.page_update_date = DateTime.now
+  end
 
   def set_user
     @user = current_user || User.new
