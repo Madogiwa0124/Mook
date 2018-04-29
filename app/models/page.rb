@@ -82,12 +82,8 @@ class Page < ApplicationRecord
     target.present? ? target.read : true
   end
 
-  # お気入り登録件数の降順で指定された件数分、ページを取得する。
   def self.get_popular_pages(count)
-    # お気に入りを内部結合し、お気に入られ件数の降順で指定件数文ページを取得
-    Page.joins(:favorite)
-        .select('pages.name, pages.url, COUNT(*)')
-        .group(:name, :url)
-        .order('COUNT(*) DESC').limit(count)
+    Page.joins(:page_view)
+        .order('page_view_count DESC').limit(count)
   end
 end
