@@ -1,6 +1,6 @@
 <div class="ranking row">
   <h2><span>人気のページ TOP3</span></h2>
-  <div>みんなにお気に入りされているページのランキングです。</div>
+  <div>みんながよく見ているページのランキングです。</div>
   <% pages = Page.get_popular_pages(3) %>
   <% pages.each.with_index(1) do |page, rank| %>
     <div class="col-md-4 rank">
