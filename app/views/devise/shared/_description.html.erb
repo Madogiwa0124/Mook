@@ -27,22 +27,6 @@
       </div>
     </div>
   </div>
-  <div class="ranking row">
-    <h2><span>人気のページ TOP3</span></h2>
-    <div>みんなにお気に入りされているページのランキングです。</div>
-    <% pages = Page.get_popular_pages(3) %>
-    <% rank = 1 %>
-    <% pages.each do |page| %>
-      <div class="col-md-4 rank">
-        <div class="value">
-          <h3> - <%= rank %>位 - </h3> 
-          <h3><%= page.name %></h3>
-          <p><%= link_to page.url, page.url %></p>
-        </div>
-      </div>
-      <hr class="visible-xs-block visible-sm-block">
-      <% rank += 1%>
-    <% end %>
-  </div>
+  <%= render "devise/shared/ranking" %>
   <p class="supplement row">※β版のため、不具合及び公開を停止する可能性がございますので、ご了承ください。</p>
 </div>

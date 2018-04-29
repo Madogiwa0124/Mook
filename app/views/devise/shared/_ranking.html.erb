@@ -1,0 +1,15 @@
+<div class="ranking row">
+  <h2><span>人気のページ TOP3</span></h2>
+  <div>みんなにお気に入りされているページのランキングです。</div>
+  <% pages = Page.get_popular_pages(3) %>
+  <% pages.each.with_index(1) do |page, rank| %>
+    <div class="col-md-4 rank">
+      <div class="value">
+        <h3> - <%= rank %>位 - </h3> 
+        <h3><%= page.name %></h3>
+        <p><%= link_to page.url, page.url %></p>
+      </div>
+    </div>
+    <hr class="visible-xs-block visible-sm-block">
+  <% end %>
+</div>
